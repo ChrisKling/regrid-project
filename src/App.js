@@ -1,3 +1,5 @@
+import { Box } from "@mui/material";
+import { Stack } from "@mui/system";
 import Footer from "./components/Footer";
 import Main from "./components/Main";
 import Navbar from "./components/Navbar";
@@ -6,13 +8,15 @@ import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
-    <div>
+    <Box>
       <Navbar></Navbar>
-      <Sidebar></Sidebar>
-      <Main></Main>
-      <Rightbar></Rightbar>
+      <Stack direction="row" spacing={2} justifyContent="space-between">
+        <Sidebar></Sidebar>
+        <Main></Main>
+        <Rightbar></Rightbar>
+      </Stack>
       <Footer></Footer>
-    </div>
+    </Box>
   );
 }
 
