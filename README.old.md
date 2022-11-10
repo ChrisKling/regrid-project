@@ -1,4 +1,7 @@
 # ReGrid
+1. npm install
+2. npm install @mui/material @emotion/react @emotion/styled
+3. npm install @mui/icons-material
 ### You like grids? we'll give you a grid on a grid!
 This app will serve as a platform where users withing a community (neighbours for instance) can trade services, commodity and sometimes even contracts with one another. This provides a new supply grid on top of the already existing grid which is your local government. 
 
