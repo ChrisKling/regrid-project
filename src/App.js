@@ -10,7 +10,7 @@ function App() {
   return (
     <Box>
       <Navbar></Navbar>
-      <Stack direction="row" spacing={2} justifyContent="space-between">
+      <Stack direction="row" spacing={0} justifyContent="space-between">
         <Sidebar></Sidebar>
         <Main></Main>
         <Rightbar></Rightbar>
