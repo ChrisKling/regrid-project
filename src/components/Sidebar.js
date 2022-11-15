@@ -1,11 +1,15 @@
 import {
   AccessibleForward,
+  AccountBox,
   CatchingPokemon,
   Home,
+  Info,
   Mail,
+  Newspaper,
   PeopleAlt,
   Settings,
   ShoppingCartCheckout,
+  SupportAgent,
 } from "@mui/icons-material";
 import {
   Box,
@@ -56,7 +60,7 @@ function Sidebar() {
           <ListItem disablePadding>
             <ListItemButton component="a" href="#home">
               <ListItemIcon>
-                <AccessibleForward />
+                <Info />
               </ListItemIcon>
               <ListItemText primary="About" />
             </ListItemButton>
@@ -66,15 +70,15 @@ function Sidebar() {
               <ListItemIcon>
                 <PeopleAlt />
               </ListItemIcon>
-              <ListItemText primary="Friends" />
+              <ListItemText primary="Nearby Users" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton component="a" href="#home">
               <ListItemIcon>
-                <ShoppingCartCheckout />
+                <SupportAgent />
               </ListItemIcon>
-              <ListItemText primary="Shop" />
+              <ListItemText primary="Support" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -88,9 +92,17 @@ function Sidebar() {
           <ListItem disablePadding>
             <ListItemButton component="a" href="#home">
               <ListItemIcon>
-                <CatchingPokemon />
+                <Newspaper />
               </ListItemIcon>
-              <ListItemText primary="Pokemon" />
+              <ListItemText primary="News" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton component="a" href="#home">
+              <ListItemIcon>
+                <AccountBox />
+              </ListItemIcon>
+              <ListItemText primary="Profile settings" />
             </ListItemButton>
           </ListItem>
         </List>
