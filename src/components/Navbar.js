@@ -100,8 +100,7 @@ function Navbar() {
         horizontal: "right",
       }}
       open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
+      onClose={handleMenuClose}>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
@@ -122,8 +121,7 @@ function Navbar() {
         horizontal: "right",
       }}
       open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
+      onClose={handleMobileMenuClose}>
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
@@ -136,8 +134,7 @@ function Navbar() {
         <IconButton
           size="large"
           aria-label="show 69 new notifications"
-          color="inherit"
-        >
+          color="inherit">
           <Badge badgeContent={17} color="error">
             <NotificationsIcon />
           </Badge>
@@ -150,8 +147,7 @@ function Navbar() {
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
-        >
+          color="inherit">
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
@@ -167,8 +163,7 @@ function Navbar() {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
+            sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton>
           <Typography
@@ -176,8 +171,7 @@ function Navbar() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
+            sx={{ display: { xs: "none", sm: "block" } }}>
             ReGrid
           </Typography>
           <Search>
@@ -194,17 +188,15 @@ function Navbar() {
             <IconButton
               size="large"
               aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
+              color="inherit">
+              <Badge badgeContent={420} color="error">
                 <MailIcon />
               </Badge>
             </IconButton>
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
-              color="inherit"
-            >
+              color="inherit">
               <Badge badgeContent={69} color="error">
                 <NotificationsIcon />
               </Badge>
@@ -216,8 +208,7 @@ function Navbar() {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
+              color="inherit">
               <AccountCircle />
             </IconButton>
           </Box>
@@ -228,8 +219,7 @@ function Navbar() {
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
+              color="inherit">
               <MoreIcon />
             </IconButton>
           </Box>
