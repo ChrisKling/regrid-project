@@ -106,9 +106,9 @@ function Sidebar() {
               <ListItemText primary="Profile settings" />
             </ListItemButton>
           </ListItem>
+          <Add />
         </List>
       </Box>
-      <Add />
     </Box>
   );
 }

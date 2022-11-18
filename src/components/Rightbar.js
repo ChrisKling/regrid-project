@@ -22,7 +22,7 @@ function Rightbar() {
         >
           Hot Shit!
         </Typography>
-        <ImageList cols={1} rowHeight={120} gap={5}>
+        <ImageList cols={1} rowHeight={180} gap={5}>
           <ImageListItem>
             <img
               src="https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"

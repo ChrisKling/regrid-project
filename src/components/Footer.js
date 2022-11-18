@@ -10,10 +10,12 @@ function Footer() {
     justifyContent: "space-between",
     backgroundColor: "#6b654b",
     color: "grey",
+    position: "sticky",
+    zIndex: "2",
   });
 
   return (
-    <Box>
+    <Box sx={{ zIndex: "2" }}>
       <StyledFooter>
         <Box sx={{ textAlign: "center" }}>
           <h3 sx={{ textAlign: "center" }}>

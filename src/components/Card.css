@@ -1,0 +1,39 @@
+.cardContainer {
+  width: 350px;
+  overflow: hidden;
+  box-shadow: 0px 0px 15px -5px;
+  transition: 0.3s;
+  animation: ease-in-out;
+  background: rgba(255, 255, 255, 0.471);
+}
+.cardContainer:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px 0;
+  background: rgb(255, 255, 255);
+}
+
+.imageContainer img {
+  overflow: hidden;
+  height: 170px;
+  width: 360px;
+  object-fit: cover;
+}
+.cardContent {
+  margin: 1rem;
+  margin-top: 0.3rem;
+}
+.titleh3 {
+  margin: 0;
+  padding: 0;
+}
+.bodyp {
+  margin: 0;
+  padding: 0;
+}
+.cardTitle {
+  margin-bottom: 0.5rem;
+}
+.cards {
+  display: flex;
+  justify-content: space-between;
+}

@@ -10,7 +10,12 @@ function App() {
   return (
     <Box width="1280px" margin="auto">
       <Navbar></Navbar>
-      <Stack direction="row" spacing={0} justifyContent="space-between">
+      <Stack
+        direction="row"
+        spacing={0}
+        justifyContent="space-between"
+        sx={{ height: "86.5vh" }}
+      >
         <Sidebar></Sidebar>
         <Main></Main>
         <Rightbar></Rightbar>
