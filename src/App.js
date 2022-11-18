@@ -8,13 +8,14 @@ import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
-    <Box>
+    <Box width="1280px" margin="auto">
       <Navbar></Navbar>
       <Stack direction="row" spacing={0} justifyContent="space-between">
         <Sidebar></Sidebar>
         <Main></Main>
         <Rightbar></Rightbar>
       </Stack>
+
       <Footer></Footer>
     </Box>
   );

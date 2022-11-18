@@ -19,6 +19,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import Add from "./Add";
 
 function Sidebar() {
   return (
@@ -107,6 +108,7 @@ function Sidebar() {
           </ListItem>
         </List>
       </Box>
+      <Add />
     </Box>
   );
 }
