@@ -5,6 +5,14 @@ import Main from "./components/Main";
 import Navbar from "./components/Navbar";
 import Rightbar from "./components/Rightbar";
 import Sidebar from "./components/Sidebar";
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+
+//contexts
+import { AuthProvider, useAuth } from "./backend/contexts/AuthContext";
+import Signup from "./backend/backend-components/Signup";
+import { ProfileProvider } from "./backend/contexts/ProfileContext";
+import Profile from "./backend/backend-components/Profile";
+import Login from "./backend/backend-components/Login";
 
 function App() {
   return (
@@ -18,8 +26,19 @@ function App() {
       >
         <Sidebar></Sidebar>
 
-        {/* TODO Routing and contexts provisioning here */}
-        <Main></Main> 
+        <BrowserRouter>
+          <AuthProvider>
+            <ProfileProvider>
+              <Routes>
+                <Route exact path='/' element={<Main/>}/>
+                <Route path='signup' element={<Signup/>}/>
+                <Route path='profile' element={<Profile/>}/>
+                <Route path='login' element={<Login/>}/>
+              </Routes>
+            </ProfileProvider>
+          </AuthProvider>
+        </BrowserRouter>
+        {/* <Main></Main>  */}
 
         <Rightbar></Rightbar>
       </Stack>

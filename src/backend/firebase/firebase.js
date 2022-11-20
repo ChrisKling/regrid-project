@@ -20,3 +20,8 @@ export const auth = getAuth(app);
 export const db = getFirestore();
 //Get reference to the data storage service
 export const storage = getStorage(app, process.env.REACT_APP_STORAGE_BUCKET);
+
+//EXPORTS TO PASS
+export {collection, addDoc, doc, getDoc, getDocs, query, where, serverTimestamp, 
+    createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut
+};
