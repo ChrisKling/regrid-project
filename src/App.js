@@ -17,7 +17,10 @@ function App() {
         sx={{ height: "86.5vh" }}
       >
         <Sidebar></Sidebar>
-        <Main></Main>
+
+        {/* TODO Routing and contexts provisioning here */}
+        <Main></Main> 
+
         <Rightbar></Rightbar>
       </Stack>
 
