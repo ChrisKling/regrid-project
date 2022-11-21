@@ -1,11 +1,11 @@
-import { Box } from "@mui/material";
-import { Stack } from "@mui/system";
+import { Box, Stack } from "@mui/material";
+
 import Footer from "./components/Footer";
 import Main from "./components/Main";
 import Navbar from "./components/Navbar";
 import Rightbar from "./components/Rightbar";
 import Sidebar from "./components/Sidebar";
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //contexts
 import { AuthProvider, useAuth } from "./backend/contexts/AuthContext";
@@ -30,10 +30,10 @@ function App() {
           <AuthProvider>
             <ProfileProvider>
               <Routes>
-                <Route exact path='/' element={<Main/>}/>
-                <Route path='signup' element={<Signup/>}/>
-                <Route path='profile' element={<Profile/>}/>
-                <Route path='login' element={<Login/>}/>
+                <Route exact path="/" element={<Main />} />
+                <Route path="signup" element={<Signup />} />
+                <Route path="profile" element={<Profile />} />
+                <Route path="login" element={<Login />} />
               </Routes>
             </ProfileProvider>
           </AuthProvider>

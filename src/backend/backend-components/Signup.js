@@ -4,6 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { Box, Button, ButtonGroup, Grid, Typography } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import { ArrowBack } from "@mui/icons-material";
+import styled from "styled-components";
 
 export default function Signup() {
   const emailRef = useRef();
@@ -36,48 +37,31 @@ export default function Signup() {
     <>
       <Box flex={5} sx={{ background: "#d4df9e" }}>
         <Box padding="30px 0 0 0 ">
-          <Button
-            variant="contained"
-            sx={{
-              width: "200px",
-              display: "flex",
-              alignItems: "center",
-              flexWrap: "wrap",
-            }}
-            href="/"
-          >
-            <ArrowBack />{" "}
-            <Typography sx={{ color: "white" }}>Back To Home</Typography>{" "}
-          </Button>
+          <StyledButton variant="contained" href="/">
+            <ArrowBack /> <Typography sx={{ color: "white" }}> Back</Typography>{" "}
+          </StyledButton>
         </Box>
-        <br />
-        <h2>Sign Up</h2>
-        <br />
-        <form onSubmit={handleSubmit}>
+
+        <StyledH2>Sign Up</StyledH2>
+
+        <StyledForm onSubmit={handleSubmit}>
           <label>Email address</label>
-          <br />
           <input type="text" ref={emailRef} required />
-          <br />
-          <br />
           <label>Password</label>
-          <br />
           <input type="password" ref={passwordRef} />
-          <br />
-          <br />
           <label>Confirm Password</label>
-          <br />
           <input type="password" ref={passwordConfirmRef} />
-          <br />
-          <br />
-          <ButtonGroup
-            variant="contained"
-            aria-label="outlined primary button group"
-          >
-            <Button disabled={loading} className="w-100" type="submit">
+          <ButtonGroup aria-label="outlined primary button group">
+            <Button
+              variant="contained"
+              className="sign-up-button"
+              disabled={loading}
+              type="submit"
+            >
               Signup!
             </Button>
           </ButtonGroup>
-        </form>
+        </StyledForm>
         {error && (
           <Typography pt={2} color="red">
             ERROR: {error}{" "}
@@ -90,3 +74,52 @@ export default function Signup() {
     </>
   );
 }
+
+const StyledForm = styled.form`
+  background: #eef2d8;
+  max-width: 300px;
+  margin: 2rem;
+  border: 2px solid white;
+  padding: 2rem;
+  border-radius: 15px;
+  label {
+    display: block;
+  }
+  input {
+    display: block;
+    width: 100%;
+  }
+  Button {
+    background: #2a2d20;
+
+    color: #eef2d8;
+    border: 0;
+    margin: 1rem 0;
+    width: 310px;
+  }
+  Button:hover {
+    background: brown;
+    color: #d4df9e;
+  }
+  label {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 5px 0 5px 0;
+  }
+`;
+const StyledH2 = styled.h2`
+  padding: 1rem 0 0 2rem;
+  color: #2a2d20;
+`;
+
+const StyledButton = styled(Button)`
+  background: #2a2d20;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: 2rem;
+  :hover {
+    background: brown;
+  }
+`;

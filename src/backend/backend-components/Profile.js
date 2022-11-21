@@ -4,8 +4,10 @@ import { storage } from "../firebase/firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FormGroup } from "@mui/material";
+import { FormGroup, Typography } from "@mui/material";
 import { Box, Button, ButtonGroup, Grid } from "@mui/material";
+import styled from "styled-components";
+import { Logout } from "@mui/icons-material";
 
 export default function Profile() {
   const [imgUrl, setImgUrl] = useState(null);
@@ -155,20 +157,24 @@ export default function Profile() {
   }
 
   return (
-    <>
-      <Box sx={{ background: "#d4df9e" }}>
-        <Button variant="link" onClick={handleLogout}>
+    <Box flex={5} sx={{ background: "#d4df9e" }}>
+      <Box padding="30px 0 0 0 ">
+        <StyledButton variant="link" onClick={handleLogout}>
           {" "}
-          Log Out{" "}
-        </Button>
+          <Logout />
+          <Typography sx={{ color: "white" }}> Log Out</Typography>{" "}
+        </StyledButton>
       </Box>
+
       <Box sx={{ background: "#d4df9e", padding: "75px" }}>
         <section>
           <div>
-            <h2 className="text-center mb-4">Set Up Profile Details</h2>
+            <StyledH2 className="text-center mb-4">
+              Set Up Profile Details
+            </StyledH2>
             {error && <p> {error} </p>}
             <form onSubmit={handleSubmit}>
-              <FormGroup>
+              <StyledFormGroup>
                 <label>Email</label>
                 <input
                   type="text"
@@ -176,8 +182,6 @@ export default function Profile() {
                     setProfile({ ...profile, email: e.target.value });
                   }}
                 />
-              </FormGroup>
-              <FormGroup>
                 <label>First Name</label>
                 <input
                   type="text"
@@ -185,8 +189,6 @@ export default function Profile() {
                     setProfile({ ...profile, firstName: e.target.value });
                   }}
                 />
-              </FormGroup>
-              <FormGroup>
                 <label>Last Name</label>
                 <input
                   type="text"
@@ -194,8 +196,6 @@ export default function Profile() {
                     setProfile({ ...profile, lastName: e.target.value });
                   }}
                 />
-              </FormGroup>
-              <FormGroup>
                 <label>Location</label>
                 <input
                   type="text"
@@ -203,15 +203,63 @@ export default function Profile() {
                     setProfile({ ...profile, location: e.target.value });
                   }}
                 />
-              </FormGroup>
-              <br />
-              <Button disabled={loading} className="w-100" type="submit">
-                Create Profile
-              </Button>
+                <Button disabled={loading} className="w-100" type="submit">
+                  Create Profile
+                </Button>
+              </StyledFormGroup>
             </form>
           </div>
         </section>
       </Box>
-    </>
+    </Box>
   );
 }
+
+const StyledFormGroup = styled(FormGroup)`
+  background: #eef2d8;
+  max-width: 300px;
+  margin: 2rem;
+  border: 2px solid white;
+  padding: 2rem;
+  border-radius: 15px;
+  label {
+    display: block;
+  }
+  input {
+    display: block;
+    width: 100%;
+  }
+  Button {
+    background: #2a2d20;
+
+    color: #eef2d8;
+    border: 0;
+    margin: 1rem 0 0 0;
+    width: 310px;
+  }
+  Button:hover {
+    background: brown;
+    color: #d4df9e;
+  }
+  label {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 5px 0 5px 0;
+  }
+`;
+const StyledH2 = styled.h2`
+  padding: 1rem 0 0 2rem;
+  color: #2a2d20;
+`;
+const StyledButton = styled(Button)`
+  background: #2a2d20;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  color: white;
+  margin-left: 2rem;
+  :hover {
+    background: brown;
+  }
+`;
