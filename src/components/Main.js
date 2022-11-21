@@ -7,16 +7,10 @@ import hero from "../images/regridv3.png";
 import Card from "./Card";
 import { useNavigate } from "react-router-dom";
 
-
-
-
 function Main() {
-  
-  
   const navigator = useNavigate();
-  
-  function navigateToPage(e, value)
-  {
+
+  function navigateToPage(e, value) {
     navigator(value);
   }
 
@@ -24,17 +18,24 @@ function Main() {
     <Box flex={5} sx={{ background: "#d4df9e" }}>
       <img src={hero} alt="hero" width="100%" />
       <Box sx={{ padding: "10px 10px 0 10px" }}>
-        <ButtonGroup 
+        <ButtonGroup
           variant="contained"
           aria-label="outlined primary button group"
         >
-          <Button onClick={(e, value)=>{navigateToPage(e, 'signup')}}
+          <Button
+            onClick={(e, value) => {
+              navigateToPage(e, "signup");
+            }}
             sx={{ width: "360px", background: "lightblue", color: "darkblue" }}
           >
             Sign UP!
           </Button>
-          <Button sx={{ width: "360px" }} 
-            onClick={(e, value)=>{navigateToPage(e, 'login')}}>
+          <Button
+            sx={{ width: "360px" }}
+            onClick={(e, value) => {
+              navigateToPage(e, "login");
+            }}
+          >
             <Login />
             Login
           </Button>
