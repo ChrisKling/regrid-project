@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import React from "react";
 import styled from "styled-components";
 import TradeTable from "./TradeTable";
-
+//disable buttons for now
 function Listings() {
   return (
     <Box flex={5} sx={{ background: "#f8faef" }}>
