@@ -13,6 +13,7 @@ import Signup from "./backend/backend-components/Signup";
 import { ProfileProvider } from "./backend/contexts/ProfileContext";
 import Profile from "./backend/backend-components/Profile";
 import Login from "./backend/backend-components/Login";
+import Listings from "./components/Listings";
 
 function App() {
   return (
@@ -24,9 +25,8 @@ function App() {
         justifyContent="space-between"
         sx={{ height: "86.5vh" }}
       >
-        <Sidebar></Sidebar>
-
         <BrowserRouter>
+          <Sidebar></Sidebar>
           <AuthProvider>
             <ProfileProvider>
               <Routes>
@@ -34,6 +34,7 @@ function App() {
                 <Route path="signup" element={<Signup />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="login" element={<Login />} />
+                <Route path="Listings" element={<Listings />} />
               </Routes>
             </ProfileProvider>
           </AuthProvider>

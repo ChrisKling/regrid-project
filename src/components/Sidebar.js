@@ -9,6 +9,7 @@ import {
   PeopleAlt,
   Settings,
   ShoppingCartCheckout,
+  Storefront,
   SupportAgent,
 } from "@mui/icons-material";
 import {
@@ -19,9 +20,16 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 import Add from "./Add";
 
 function Sidebar() {
+  const navigator = useNavigate();
+
+  function navigateToPage(e, value) {
+    navigator(value);
+  }
+
   return (
     <Box
       color="#12100e"
@@ -43,7 +51,7 @@ function Sidebar() {
       >
         <List>
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#home">
+            <ListItemButton component="a" href="/">
               <ListItemIcon>
                 <Home />
               </ListItemIcon>
@@ -51,11 +59,17 @@ function Sidebar() {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#simple-list">
+            <ListItemButton component="a">
               <ListItemIcon>
-                <Settings />
+                <Storefront />
               </ListItemIcon>
-              <ListItemText primary="Settings" />
+
+              <ListItemText
+                primary="Listings"
+                onClick={(e, value) => {
+                  navigateToPage(e, "Listings");
+                }}
+              />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>

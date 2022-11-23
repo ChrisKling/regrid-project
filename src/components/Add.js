@@ -112,8 +112,9 @@ const StyledTooltip = styled(Tooltip)`
   }
 `;
 const StyledBox = styled(Box)`
-  height: 400px;
-  padding: 200px 0 0 0;
+  height: 200px;
+  overflow: hidden;
+  margin: 200px 0 0 0;
 `;
 const StyledTypography = styled(Typography)`
   width: 90px;

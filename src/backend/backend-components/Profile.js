@@ -160,9 +160,8 @@ export default function Profile() {
     <Box flex={5} sx={{ background: "#d4df9e" }}>
       <Box padding="30px 0 0 0 ">
         <StyledButton variant="link" onClick={handleLogout}>
-          {" "}
           <Logout />
-          <Typography sx={{ color: "white" }}> Log Out</Typography>{" "}
+          <Typography sx={{ color: "white" }}> Log Out</Typography>
         </StyledButton>
       </Box>
 
@@ -226,8 +225,12 @@ const StyledFormGroup = styled(FormGroup)`
     display: block;
   }
   input {
+    font-size: 16px;
     display: block;
     width: 100%;
+    border-radius: 15px;
+    border: none;
+    padding: 8px;
   }
   Button {
     background: #2a2d20;

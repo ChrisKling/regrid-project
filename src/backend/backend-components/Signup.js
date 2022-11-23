@@ -64,7 +64,7 @@ export default function Signup() {
         </StyledForm>
         {error && (
           <Typography pt={2} color="red">
-            ERROR: {error}{" "}
+            ERROR: {error}
           </Typography>
         )}
         <div>
@@ -86,8 +86,12 @@ const StyledForm = styled.form`
     display: block;
   }
   input {
+    font-size: 16px;
     display: block;
     width: 100%;
+    border-radius: 15px;
+    border: none;
+    padding: 8px;
   }
   Button {
     background: #2a2d20;

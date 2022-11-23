@@ -32,7 +32,7 @@ export default function Login() {
     <Box flex={5} sx={{ background: "#d4df9e" }}>
       <Box padding="30px 0 0 0 ">
         <StyledButton variant="contained" href="/">
-          <ArrowBack /> <Typography sx={{ color: "white" }}> Back</Typography>{" "}
+          <ArrowBack /> <Typography sx={{ color: "white" }}> Back</Typography>
         </StyledButton>
 
         <StyledH2>Login</StyledH2>
@@ -43,18 +43,13 @@ export default function Login() {
           <label>Password</label>
           <input type="password" ref={passwordRef} />
           <ButtonGroup aria-label="outlined primary button group">
-            <Button
-              disabled={loading}
-              className="w-100"
-              type="submit"
-              variant="contained"
-            >
+            <Button disabled={loading} type="submit" variant="contained">
               Login
             </Button>
           </ButtonGroup>
           {error && (
             <Typography pt={2} color="red">
-              ERROR: {error}{" "}
+              ERROR: {error}
             </Typography>
           )}
         </StyledForm>
@@ -77,8 +72,12 @@ const StyledForm = styled.form`
     display: block;
   }
   input {
+    font-size: 16px;
     display: block;
     width: 100%;
+    border-radius: 15px;
+    border: none;
+    padding: 8px;
   }
   Button {
     background: #2a2d20;
