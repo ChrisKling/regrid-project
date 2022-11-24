@@ -88,6 +88,17 @@ body {
   animation: stick 1s infinite alternate;
   transform-origin: top;
 }
+.sun {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: rgb(255, 217, 0);
+  box-shadow: 1px -1px 40px 0px yellow;
+  animation-name: sunrotation;
+  animation-duration: 50s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
 @keyframes clouds {
   from {
     left: 0;
@@ -114,5 +125,22 @@ body {
   }
   to {
     transform: rotateY(30deg);
+  }
+}
+@keyframes sunrotation {
+  0% {
+    transform: translate(-300px, 300px);
+  }
+  25% {
+    transform: translate(300px, 0px);
+  }
+  50% {
+    transform: translate(800px, -100px);
+  }
+  75% {
+    transform: translate(1390px, 0px);
+  }
+  100% {
+    transform: translate(1920px, 300px);
   }
 }
