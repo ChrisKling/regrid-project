@@ -21,7 +21,6 @@
 #logo path:nth-child(2) {
   stroke-dasharray: 550px;
   stroke-dashoffset: 550px;
-
   animation: line-anim 2s ease forwards;
 }
 #logo path:nth-child(3) {

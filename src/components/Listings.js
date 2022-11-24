@@ -22,7 +22,10 @@ function Listings() {
           <ArrowBack />
         </button>
         <div>
-          <h1>Listings</h1>
+          <div className="listingsHeader">
+            <h1>Listings</h1>
+            <div className="searchContainer"></div>
+          </div>
           <div className="listingCardsWrapper">
             <Card details={CardData} />
           </div>
