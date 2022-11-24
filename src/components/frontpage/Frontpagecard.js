@@ -18,7 +18,14 @@ function Frontpagecard() {
           incidunt quos molestiae quisquam molestias? Architecto.
         </p>
         <div className="buttonContainer">
-          <button className="loginButton">Browse</button>
+          <button
+            className="loginButton"
+            onClick={(e, value) => {
+              navigateToPage(e, "Listings");
+            }}
+          >
+            Browse
+          </button>
           <button
             className="loginButton"
             onClick={(e, value) => {

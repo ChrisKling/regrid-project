@@ -4,25 +4,27 @@ import "./Card.css";
 
 function Card() {
   return (
-    <div className="cardContainer">
+    <div className="listingCardContainer">
       <div className="imageContainer">
         <img
-          src="https://images.pexels.com/photos/208821/pexels-photo-208821.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          src="https://images.pexels.com/photos/53588/tomatoes-vegetables-food-frisch-53588.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           alt=""
         />
       </div>
       <div className="cardContent">
         <div className="cardTitle">
-          <h3 className="titleh3">Hot Stories!</h3>
+          <h3 className="titleh3">Fresh Tomatoes</h3>
         </div>
         <div className="cardBody">
           <p className="bodyp">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum
-            tenetur, veritatis libero vitae cumque aliquam?
+            I got 5kg of tomatoes to trade, I'm in the dragon's Den area Would
+            love to trade it for some bananas HMU!
           </p>
         </div>
       </div>
-      <Button>Read More</Button>
+      <p>Location: my place</p>
+      <p>Listing expiry: 4 days</p>
+      <button className="listingCardButton">Open Listing</button>
     </div>
   );
 }
