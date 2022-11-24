@@ -19,7 +19,14 @@ function Frontpagecard() {
         </p>
         <div className="buttonContainer">
           <button className="loginButton">Browse</button>
-          <button className="loginButton">Sign Up</button>
+          <button
+            className="loginButton"
+            onClick={(e, value) => {
+              navigateToPage(e, "signup");
+            }}
+          >
+            Sign Up
+          </button>
           <button
             className="loginButton"
             onClick={(e, value) => {

@@ -4,12 +4,19 @@ import { storage } from "../firebase/firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FormGroup, Typography } from "@mui/material";
-import { Box, Button, ButtonGroup, Grid } from "@mui/material";
-import styled from "styled-components";
-import { Logout } from "@mui/icons-material";
+
+import {
+  ArrowForward,
+  CameraAlt,
+  Logout,
+  PersonOutline,
+} from "@mui/icons-material";
+import "./Profile.css";
 
 export default function Profile() {
+  function navigateToPage(e, value) {
+    navigator(value);
+  }
   const [imgUrl, setImgUrl] = useState(null);
   const [imgRef, setImgRef] = useState(null);
   const [progressPercent, setProgressPercent] = useState(0);
@@ -102,8 +109,8 @@ export default function Profile() {
 
   if (userProfile) {
     return (
-      <Box flex={5} sx={{ background: "#d4df9e" }}>
-        <Box>
+      <div className="cardContainer">
+        <div className="loginBox">
           <section>
             <div>
               <h2> Welcome, {userProfile.firstName} </h2>
@@ -122,58 +129,83 @@ export default function Profile() {
               />
             </div>
           </section>
+
           <section>
             <div>
               <form onSubmit={uploadFile}>
-                <input type="file" />
-                <Button variant="outlined" type="submit">
+                <label for="inputTag" className="inputWrapper">
+                  <CameraAlt />
+                  <h3>Select Image</h3>
+                  <input type="file" id="inputTag" className="inputFile" />
+                </label>
+
+                <button
+                  className="loginButton"
+                  variant="outlined"
+                  type="submit"
+                >
                   Upload
-                </Button>
+                </button>
+                <div className="imgContainer">
+                  {!imgUrl && (
+                    <div className="loadingWrapper">
+                      <PersonOutline />
+                      <div style={{ width: `${progressPercent}` }}>
+                        {progressPercent}%
+                      </div>
+                    </div>
+                  )}
+
+                  {imgUrl && (
+                    <img
+                      src={imgUrl}
+                      alt="myFile"
+                      className="profileImageUpload"
+                    />
+                  )}
+                </div>
               </form>
             </div>
-            <div>
-              {!imgUrl && (
-                <div>
-                  <div style={{ width: `${progressPercent}` }}>
-                    {progressPercent}%
-                  </div>
-                </div>
-              )}
-
-              {imgUrl && (
-                <img src={imgUrl} alt="myFile" style={{ width: "128px" }} />
-              )}
-            </div>
           </section>
-          <Box p="30px 0 0 0">
-            <Button variant="link" onClick={handleLogout} sx={{ color: "red" }}>
-              {" "}
-              Log Out{" "}
-            </Button>
-          </Box>
-        </Box>
-      </Box>
+          <div>
+            <button
+              variant="link"
+              onClick={handleLogout}
+              className="navigateBackButton"
+            >
+              <Logout />
+            </button>
+            <button
+              className="browseButton"
+              onClick={(e, value) => {
+                navigateToPage(e, "Listings");
+              }}
+            >
+              Browse <ArrowForward />
+            </button>
+          </div>
+        </div>
+      </div>
     );
   }
 
   return (
-    <Box flex={5} sx={{ background: "#d4df9e" }}>
-      <Box padding="30px 0 0 0 ">
-        <StyledButton variant="link" onClick={handleLogout}>
+    <div className="cardContainer">
+      <div className="loginBox">
+        <button
+          variant="link"
+          onClick={handleLogout}
+          className="navigateBackButton"
+        >
           <Logout />
-          <Typography sx={{ color: "white" }}> Log Out</Typography>
-        </StyledButton>
-      </Box>
+        </button>
 
-      <Box sx={{ background: "#d4df9e", padding: "75px" }}>
-        <section>
-          <div>
-            <StyledH2 className="text-center mb-4">
-              Set Up Profile Details
-            </StyledH2>
-            {error && <p> {error} </p>}
-            <form onSubmit={handleSubmit}>
-              <StyledFormGroup>
+        <div>
+          <section>
+            <div>
+              <h2>Set Up Profile Details</h2>
+              {error && <p> {error} </p>}
+              <form onSubmit={handleSubmit}>
                 <label>Email</label>
                 <input
                   type="text"
@@ -202,67 +234,18 @@ export default function Profile() {
                     setProfile({ ...profile, location: e.target.value });
                   }}
                 />
-                <Button disabled={loading} className="w-100" type="submit">
+                <button
+                  disabled={loading}
+                  type="submit"
+                  className="loginButton"
+                >
                   Create Profile
-                </Button>
-              </StyledFormGroup>
-            </form>
-          </div>
-        </section>
-      </Box>
-    </Box>
+                </button>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
   );
 }
-
-const StyledFormGroup = styled(FormGroup)`
-  background: #eef2d8;
-  max-width: 300px;
-  margin: 2rem;
-  border: 2px solid white;
-  padding: 2rem;
-  border-radius: 15px;
-  label {
-    display: block;
-  }
-  input {
-    font-size: 16px;
-    display: block;
-    width: 100%;
-    border-radius: 15px;
-    border: none;
-    padding: 8px;
-  }
-  Button {
-    background: #2a2d20;
-
-    color: #eef2d8;
-    border: 0;
-    margin: 1rem 0 0 0;
-    width: 310px;
-  }
-  Button:hover {
-    background: brown;
-    color: #d4df9e;
-  }
-  label {
-    font-size: 16px;
-    font-weight: 600;
-    margin: 5px 0 5px 0;
-  }
-`;
-const StyledH2 = styled.h2`
-  padding: 1rem 0 0 2rem;
-  color: #2a2d20;
-`;
-const StyledButton = styled(Button)`
-  background: #2a2d20;
-  width: 200px;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  color: white;
-  margin-left: 2rem;
-  :hover {
-    background: brown;
-  }
-`;
