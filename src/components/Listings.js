@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "./Card";
 import "./Listings.css";
+import CardData from "./CardData";
 
 function Listings() {
   return (
@@ -8,7 +9,7 @@ function Listings() {
       <div>
         <h1>Listings</h1>
         <div className="listingCardsWrapper">
-          <Card />
+          <Card details={CardData} />
         </div>
       </div>
     </div>
