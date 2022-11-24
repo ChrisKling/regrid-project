@@ -1,0 +1,51 @@
+input[type="text"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+form {
+  margin: 2rem;
+  border: 2px solid white;
+  margin-bottom: 0;
+  border-radius: 15px;
+}
+label {
+  display: block;
+  padding-bottom: 15px;
+  font-weight: 600;
+}
+input {
+  font-size: 16px;
+  display: block;
+  width: 100%;
+  border-radius: 15px;
+  border: none;
+  padding: 8px;
+  background-color: rgba(255, 99, 71, 0.153);
+}
+.navigateBackButton:hover {
+  background: rgb(228, 58, 24);
+  color: white;
+  cursor: pointer;
+}
+.navigateBackButton {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: white;
+  background: tomato;
+  font-size: 20px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.inputPadding {
+  padding-bottom: 12px;
+}
+.bottomText {
+  margin-bottom: 0;
+}

@@ -2,27 +2,27 @@ import { Button } from "@mui/material";
 import React from "react";
 import "./Card.css";
 
-function Card() {
+function Card(props) {
   return (
-    <div className="cardContainer">
-      <div className="imageContainer">
-        <img
-          src="https://images.pexels.com/photos/208821/pexels-photo-208821.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt=""
-        />
-      </div>
-      <div className="cardContent">
-        <div className="cardTitle">
-          <h3 className="titleh3">Hot Stories!</h3>
+    <div className="grid">
+      {props.details.map((value, index) => (
+        <div className="listingCardContainer" key={index}>
+          <div className="imageContainer">
+            <img src={value.img} alt="" />
+          </div>
+          <div className="cardContent">
+            <div className="cardTitle">
+              <h3 className="titleh3">{value.title}</h3>
+            </div>
+            <div className="cardBody">
+              <p className="bodyp">{value.description}</p>
+            </div>
+          </div>
+          <p>{value.location}</p>
+          <p>{value.expiry}</p>
+          <button className="listingCardButton">Open Listing</button>
         </div>
-        <div className="cardBody">
-          <p className="bodyp">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum
-            tenetur, veritatis libero vitae cumque aliquam?
-          </p>
-        </div>
-      </div>
-      <Button>Read More</Button>
+      ))}
     </div>
   );
 }

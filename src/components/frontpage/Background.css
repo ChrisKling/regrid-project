@@ -1,0 +1,118 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  text-align: center;
+}
+.background {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(to bottom, rgb(33, 182, 241), rgb(55, 55, 146));
+}
+.cloud::before {
+  content: "";
+  position: absolute;
+  top: -80%;
+  left: 10%;
+  width: 50%;
+  height: 150%;
+  background: white;
+  border-radius: 50%;
+}
+.cloud::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: 20%;
+  width: 30%;
+  height: 100%;
+  background: white;
+  border-radius: 50%;
+}
+
+.cloud {
+  position: absolute;
+
+  background: white;
+  border-radius: 1000px;
+  animation: clouds 30s infinite linear;
+}
+.cloud.one {
+  top: 30%;
+  left: 40%;
+  width: 300px;
+  height: 100px;
+}
+.cloud.two {
+  top: 40%;
+  left: -100px;
+  width: 100px;
+  height: 40px;
+  animation-duration: 40s;
+  animation-delay: 5s;
+}
+.cloud.three {
+  top: 20%;
+  left: -200px;
+  width: 150px;
+  height: 50px;
+  animation-duration: 35s;
+  animation-delay: 15s;
+}
+
+.camper {
+  width: 30%;
+  z-index: 3;
+  position: absolute;
+  bottom: 40px;
+}
+.hills {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+#Fire {
+  animation: fire 1.5s ease-in-out infinite alternate;
+  transform-origin: bottom;
+  transform-box: fill-box;
+}
+
+#Stick {
+  animation: stick 1s infinite alternate;
+  transform-origin: top;
+}
+@keyframes clouds {
+  from {
+    left: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    left: 100%;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes fire {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(1.7);
+  }
+}
+
+@keyframes stick {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(30deg);
+  }
+}

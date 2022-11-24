@@ -8,6 +8,7 @@ import {
   TextField,
   Tooltip,
   Typography,
+  Stack,
 } from "@mui/material";
 import {
   Add as AddIcon,
@@ -19,7 +20,7 @@ import {
 } from "@mui/icons-material";
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { Stack } from "@mui/system";
+import { height } from "@mui/system";
 
 const StyledModal = styled(Modal)({
   display: "flex",
@@ -38,17 +39,14 @@ const Add = () => {
 
   return (
     <>
-      <Tooltip
-        onClick={(e) => setOpen(true)}
-        title="Add listing"
-        sx={{
-          background: "Brown",
-        }}
-      >
-        <Fab color="primary" aria-label="add">
-          <AddIcon />
-        </Fab>
-      </Tooltip>
+      <StyledBox>
+        <StyledTypography variant="h6">Add New Listing</StyledTypography>
+        <StyledTooltip onClick={(e) => setOpen(true)} title="Add listing">
+          <Fab color="primary" aria-label="add">
+            <AddIcon />
+          </Fab>
+        </StyledTooltip>
+      </StyledBox>
       <StyledModal
         open={open}
         onClose={(e) => setOpen(false)}
@@ -104,5 +102,25 @@ const Add = () => {
     </>
   );
 };
+
+const StyledTooltip = styled(Tooltip)`
+  background: #2a2d20;
+  position: sticky;
+  bottom: 20px;
+  :hover {
+    background: brown;
+  }
+`;
+const StyledBox = styled(Box)`
+  height: 200px;
+  overflow: hidden;
+  margin: 200px 0 0 0;
+`;
+const StyledTypography = styled(Typography)`
+  width: 90px;
+  margin: auto;
+  padding-bottom: 10px;
+  color: #2a2d20;
+`;
 
 export default Add;

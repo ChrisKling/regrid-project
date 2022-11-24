@@ -1,12 +1,19 @@
 import { Height, Login } from "@mui/icons-material";
 import { Box, Button, ButtonGroup, Grid } from "@mui/material";
-import { color } from "@mui/system";
+import { color } from "@mui/material";
 import "./Card.css";
 
 import hero from "../images/regridv3.png";
 import Card from "./Card";
+import { useNavigate } from "react-router-dom";
 
 function Main() {
+  const navigator = useNavigate();
+
+  function navigateToPage(e, value) {
+    navigator(value);
+  }
+  // dont go coding while in a meeting
   return (
     <Box flex={5} sx={{ background: "#d4df9e" }}>
       <img src={hero} alt="hero" width="100%" />
@@ -16,11 +23,19 @@ function Main() {
           aria-label="outlined primary button group"
         >
           <Button
+            onClick={(e, value) => {
+              navigateToPage(e, "signup");
+            }}
             sx={{ width: "360px", background: "lightblue", color: "darkblue" }}
           >
             Sign UP!
           </Button>
-          <Button sx={{ width: "360px" }}>
+          <Button
+            sx={{ width: "360px" }}
+            onClick={(e, value) => {
+              navigateToPage(e, "login");
+            }}
+          >
             <Login />
             Login
           </Button>

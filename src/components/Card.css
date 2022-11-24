@@ -1,22 +1,37 @@
-.cardContainer {
-  width: 350px;
+.listingCardContainer {
+  width: 250px;
+  height: 380px;
   overflow: hidden;
-  box-shadow: 0px 0px 15px -5px;
+  border: 1px solid tomato;
+  border-radius: 15px;
   transition: 0.3s;
   animation: ease-in-out;
   background: rgba(255, 255, 255, 0.471);
+  color: tomato;
+  margin: 10px;
 }
-.cardContainer:hover {
-  transform: scale(1.2);
-  box-shadow: 0 0 15px 0;
-  background: rgb(255, 255, 255);
+.listingCardButton {
+  width: 250px;
+  height: 40px;
+  margin: 1em auto;
+  display: block;
+  background-color: tomato;
+  color: white;
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
+  padding-top: auto;
+}
+.listingCardButton:hover {
+  background: rgb(232, 65, 36);
+  cursor: pointer;
 }
 
 .imageContainer img {
   overflow: hidden;
   height: 170px;
   width: 360px;
-  object-fit: cover;
+  object-fit: none;
 }
 .cardContent {
   margin: 1rem;
@@ -29,6 +44,7 @@
 .bodyp {
   margin: 0;
   padding: 0;
+  height: 55px;
 }
 .cardTitle {
   margin-bottom: 0.5rem;
@@ -36,4 +52,12 @@
 .cards {
   display: flex;
   justify-content: space-between;
+}
+.grid {
+  min-height: 100%;
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
 }
