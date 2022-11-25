@@ -30,6 +30,22 @@
   font-weight: 800;
 }
 
+.filter-container button {
+  margin-right: 2rem;
+  min-width: 5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: white;
+  color: tomato;
+  border-radius: 1rem;
+  border: 2px solid tomato;
+  cursor: pointer;
+}
+button.active {
+  background: tomato;
+  color: white;
+}
+
 /*Scrollbar modifier*/
 
 ::-webkit-scrollbar {

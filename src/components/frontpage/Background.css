@@ -82,6 +82,7 @@ body {
   animation: fire 1.5s ease-in-out infinite alternate;
   transform-origin: bottom;
   transform-box: fill-box;
+  box-shadow: 1px -1px 40px 0px yellow;
 }
 
 #Stick {
