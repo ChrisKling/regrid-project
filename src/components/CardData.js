@@ -16,7 +16,7 @@ const CardData = [
     description: `Oranges for days come and get em now!`,
     location: "Greenhills",
     startDate: "22-11-2022 10:02",
-    expiryCount: "9 days",
+    expiryCount: 9,
     expiryFactor: "days",
   },
   {
