@@ -30,9 +30,16 @@ export default function Profile() {
     location: "",
     email: "",
     userId: "",
+    profileImg: null,
   });
 
-  const { addProfile, getUserProfile, userProfile } = useProfile();
+  const {
+    addProfile,
+    getUserProfile,
+    updateProfile,
+    userProfile,
+    checkIfProfileExists,
+  } = useProfile();
   const navigator = useNavigate();
   const [loading, setLoading] = useState(false);
 
@@ -40,7 +47,13 @@ export default function Profile() {
     if (!currentUser) {
       navigator("/login");
     }
-    setProfile({ ...profile, userId: currentUser.uid });
+
+    if (!checkIfProfileExists(currentUser.uid)) {
+      setProfileIsValid(true);
+      //setProfile(userProfile);
+    } else {
+      setProfile({ ...profile, userId: currentUser.uid });
+    }
   }, []);
 
   useEffect(() => {
@@ -49,14 +62,44 @@ export default function Profile() {
     }
   }, [profileValid]);
 
+  useEffect(() => {
+    if (profile.profileImg) {
+      updateProfile(profile, profile.userId);
+      console.log("PROFILE img FX FIRED");
+      setImgUrl(profile.profileImg);
+      getUserProfile(currentUser.uid);
+    }
+  }, [profile.profileImg]);
+
+  useEffect(() => {
+    if (imgUrl) {
+      getUserProfile(currentUser.uid);
+      console.log("final FX executed");
+    }
+  }, [imgUrl]);
+
+  // useEffect(() => {
+  //   if (userProfile) {
+  //     setProfile(userProfile);
+  //     //setImgUrl(userProfile.profileImg)
+  //   }
+  // }, [userProfile]);
+
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
       setError("");
       setLoading(true);
+      // if(profileValid)
+      // {
+      //   await updateProfile(profile, currentUser.uid);
+      // }
+      // else
+      //{
       await addProfile(profile, currentUser.uid);
       setProfileIsValid(true);
+      //}
 
       //TODO: getting and setting an image/file reference requires us to get it's download link
       //const myRef = ref(storage, "files/ReGrid_00.png");
@@ -75,13 +118,14 @@ export default function Profile() {
     setError("");
     try {
       await logout();
+      console.log("should have logged out!");
       navigator("/login");
     } catch (error) {
       setError("logout Failed!");
     }
   }
 
-  const uploadFile = (e) => {
+  const uploadFile = async (e) => {
     e.preventDefault();
     const file = e.target[0]?.files[0];
     if (!file) return;
@@ -101,10 +145,11 @@ export default function Profile() {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((donwloadURL) => {
-          setImgUrl(donwloadURL);
+          setProfile({ ...profile, profileImg: donwloadURL });
         });
       }
     );
+    //await getUserProfile(profile, currentUser.uid);
   };
 
   if (userProfile) {
@@ -121,33 +166,37 @@ export default function Profile() {
             <div>
               <h4>Email:</h4> <p>{userProfile.email}</p>
             </div>
-            <div>
+            {/* <div>
               <img
-                src={imgRef}
+                src={userProfile.profileImg}
                 alt="myIMG"
                 style={{ maxWidth: "128px", maxHeight: "128px" }}
               />
-            </div>
+            </div> */}
           </section>
 
           <section>
             <div>
               <form onSubmit={uploadFile}>
-                <label for="inputTag" className="inputWrapper">
-                  <CameraAlt />
-                  <h3>Select Image</h3>
-                  <input type="file" id="inputTag" className="inputFile" />
-                </label>
+                {!userProfile.profileImg && (
+                  <>
+                    <label for="inputTag" className="inputWrapper">
+                      <CameraAlt />
+                      <h3>Select Image</h3>
+                      <input type="file" id="inputTag" className="inputFile" />
+                    </label>
 
-                <button
-                  className="loginButton"
-                  variant="outlined"
-                  type="submit"
-                >
-                  Upload
-                </button>
+                    <button
+                      className="loginButton"
+                      variant="outlined"
+                      type="submit"
+                    >
+                      Upload
+                    </button>
+                  </>
+                )}
                 <div className="imgContainer">
-                  {!imgUrl && (
+                  {!userProfile.profileImg && (
                     <div className="loadingWrapper">
                       <PersonOutline />
                       <div style={{ width: `${progressPercent}` }}>
@@ -156,9 +205,9 @@ export default function Profile() {
                     </div>
                   )}
 
-                  {imgUrl && (
+                  {userProfile.profileImg && (
                     <img
-                      src={imgUrl}
+                      src={userProfile.profileImg}
                       alt="myFile"
                       className="profileImageUpload"
                     />

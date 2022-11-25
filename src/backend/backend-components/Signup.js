@@ -10,10 +10,16 @@ export default function Signup() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { signup } = useAuth();
+  const { signup, currentUser } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigator = useNavigate();
+
+  useEffect(() => {
+    if (currentUser) {
+      navigator("/profile");
+    }
+  }, [currentUser]);
 
   async function handleSubmit(e) {
     console.log("form submitted");

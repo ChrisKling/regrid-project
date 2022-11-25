@@ -14,6 +14,7 @@ import Listings from "./components/Listings";
 import Background from "./components/frontpage/Background";
 import Frontpage from "./components/frontpage/Frontpage";
 import PopupSignup from "./backend/backend-components/PopupSignup";
+import PrivateRoute from "./backend/backend-components/PrivateRoute";
 
 function App() {
   return (
@@ -24,7 +25,9 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Frontpage />} />
               <Route path="signup" element={<PopupSignup />} />
-              <Route path="profile" element={<Profile />} />
+              <Route exact path="/" element={<PrivateRoute/>}>
+                <Route exact path="profile" element={<Profile />} />
+              </Route>
               <Route path="login" element={<Login />} />
               <Route path="Listings" element={<Listings />} />
             </Routes>

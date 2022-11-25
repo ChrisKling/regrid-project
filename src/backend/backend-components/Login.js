@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { Box, Button, ButtonGroup, Grid, Typography } from "@mui/material";
@@ -9,10 +9,16 @@ import { ArrowBack } from "@mui/icons-material";
 export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const { login, currentUser } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigator = useNavigate();
+
+  useEffect(() => {
+    if (currentUser) {
+      navigator("/profile");
+    }
+  }, [currentUser]);
 
   async function handleSubmit(e) {
     console.log("form submitted");
