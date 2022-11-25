@@ -14,6 +14,7 @@ import Listings from "./components/Listings";
 import Background from "./components/frontpage/Background";
 import Frontpage from "./components/frontpage/Frontpage";
 import PopupSignup from "./backend/backend-components/PopupSignup";
+import NewListing from "./components/NewListing/NewListing";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <Route path="profile" element={<Profile />} />
               <Route path="login" element={<Login />} />
               <Route path="Listings" element={<Listings />} />
+              <Route path="NewListing" element={<NewListing />} />
             </Routes>
           </ProfileProvider>
         </AuthProvider>
