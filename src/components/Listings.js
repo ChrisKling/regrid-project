@@ -36,7 +36,7 @@ function Listings() {
         <button
           className="newListingButton"
           onClick={(e, value) => {
-            navigateToPage(e, "NewListings");
+            navigateToPage(e, "../newListing");
           }}>
           <ArrowBack />
         </button>
