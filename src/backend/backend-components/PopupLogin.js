@@ -25,7 +25,7 @@ function PopupLogin() {
       await login(emailRef.current.value, passwordRef.current.value);
       navigator("/profile");
     } catch (err) {
-      setError("Account creation failed!");
+      setError("Wrong email or password!");
       console.log(err);
     }
     setLoading(false);
