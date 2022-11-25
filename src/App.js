@@ -15,6 +15,7 @@ import Background from "./components/frontpage/Background";
 import Frontpage from "./components/frontpage/Frontpage";
 import PopupSignup from "./backend/backend-components/PopupSignup";
 import NewListing from "./components/NewListing/NewListing";
+import IndividualListing from "./components/IndividualListing";
 
 function App() {
   return (
@@ -29,6 +30,11 @@ function App() {
               <Route path="login" element={<Login />} />
               <Route path="Listings" element={<Listings />} />
               <Route path="NewListing" element={<NewListing />} />
+              <Route
+                exact
+                path="IndividualListing"
+                element={<IndividualListing />}
+              />
             </Routes>
           </ProfileProvider>
         </AuthProvider>

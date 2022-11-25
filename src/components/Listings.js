@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./Listings.css";
 import "./Card.css";
 import CardData from "./CardData";
-import { ArrowBack } from "@mui/icons-material";
+import { Add, ArrowBack } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 function Listings() {
@@ -30,15 +30,17 @@ function Listings() {
           className="navigateBackButton"
           onClick={(e, value) => {
             navigateToPage(e, "/");
-          }}>
+          }}
+        >
           <ArrowBack />
         </button>
         <button
           className="newListingButton"
-          onClick={(e, value) => {
-            navigateToPage(e, "../newListing");
-          }}>
-          <ArrowBack />
+          onClick={() => {
+            navigator("../NewListing");
+          }}
+        >
+          <Add />
         </button>
         <div>
           <div className="listingsHeader">
@@ -47,17 +49,20 @@ function Listings() {
               <div className="filter-container">
                 <button
                   className="listingButton"
-                  onClick={() => setData(CardData)}>
+                  onClick={() => setData(CardData)}
+                >
                   All
                 </button>
                 <button
                   className="listingButton"
-                  onClick={() => filterResult("fruit")}>
+                  onClick={() => filterResult("fruit")}
+                >
                   Fruits
                 </button>
                 <button
                   className="listingButton"
-                  onClick={() => filterResult("vegetable")}>
+                  onClick={() => filterResult("vegetable")}
+                >
                   Vegetables
                 </button>
               </div>
@@ -83,7 +88,14 @@ function Listings() {
                     </div>
                     <p>{location}</p>
                     <p>{expiry}</p>
-                    <button className="listingCardButton">Open Listing</button>
+                    <button
+                      className="listingCardButton"
+                      onClick={(e, value) => {
+                        navigateToPage(e, "../IndividualListing");
+                      }}
+                    >
+                      Open Listing
+                    </button>
                   </div>
                 );
               })}

@@ -32,7 +32,7 @@
   color: white;
 }
 .newListingButton {
-  width: 150px;
+  width: 50px;
   height: 50px;
   border-radius: 50%;
   color: white;
@@ -46,8 +46,8 @@
   justify-content: center;
 }
 .newListingButton:hover {
-  width: 160px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background: rgb(209, 110, 92);
   cursor: pointer;
 }
