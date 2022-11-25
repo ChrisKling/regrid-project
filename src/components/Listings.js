@@ -30,8 +30,14 @@ function Listings() {
           className="navigateBackButton"
           onClick={(e, value) => {
             navigateToPage(e, "/");
-          }}
-        >
+          }}>
+          <ArrowBack />
+        </button>
+        <button
+          className="newListingButton"
+          onClick={(e, value) => {
+            navigateToPage(e, "NewListings");
+          }}>
           <ArrowBack />
         </button>
         <div>
@@ -41,20 +47,17 @@ function Listings() {
               <div className="filter-container">
                 <button
                   className="listingButton"
-                  onClick={() => setData(CardData)}
-                >
+                  onClick={() => setData(CardData)}>
                   All
                 </button>
                 <button
                   className="listingButton"
-                  onClick={() => filterResult("fruit")}
-                >
+                  onClick={() => filterResult("fruit")}>
                   Fruits
                 </button>
                 <button
                   className="listingButton"
-                  onClick={() => filterResult("vegetable")}
-                >
+                  onClick={() => filterResult("vegetable")}>
                   Vegetables
                 </button>
               </div>
