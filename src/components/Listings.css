@@ -16,10 +16,28 @@
   display: grid;
   overflow-y: scroll;
 }
+.listingCardsWrapper {
+  padding-top: 150px;
+}
+.listingButton:focus {
+  background-color: tomato;
+  color: white;
+}
+.listingButton:hover {
+  background-color: rgba(255, 99, 71, 0.35);
+  color: white;
+}
+.listingButton:active {
+  background-color: rgba(255, 99, 71, 0.746);
+  color: white;
+}
 
 .listingsHeader {
   padding-bottom: 3rem;
-
+  position: absolute;
+  left: 50%;
+  top: 50px;
+  transform: translate(-50%);
   border-bottom: 2px solid rgba(255, 99, 71, 0.505);
 }
 .searchContainer {
