@@ -31,8 +31,7 @@ function App() {
               <Route path="Listings" element={<Listings />} />
               <Route path="NewListing" element={<NewListing />} />
               <Route
-                exact
-                path="IndividualListing"
+                path="/IndividualListing/:id"
                 element={<IndividualListing />}
               />
             </Routes>

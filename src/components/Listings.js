@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import "./Listings.css";
 import "./Card.css";
 import CardData from "./CardData";
-import { Add, ArrowBack } from "@mui/icons-material";
+import { Add, ArrowBack, ArrowDownward } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function Listings() {
   const [data, setData] = useState(CardData);
+  const [isOpen, setIsOpen] = useState(false);
 
   const filterResult = (type) => {
     const result = CardData.filter((items) => {
@@ -44,28 +46,47 @@ function Listings() {
         </button>
         <div>
           <div className="listingsHeader">
-            <h1>Listings</h1>
+            <h1>LISTINGS</h1>
             <div className="searchContainer">
-              <div className="filter-container">
-                <button
-                  className="listingButton"
-                  onClick={() => setData(CardData)}
+              <motion.div className="filter-container" layout>
+                <motion.button
+                  layout
+                  className="openSearchButton"
+                  id="openSearchButton"
+                  onClick={() => setIsOpen(!isOpen)}
                 >
-                  All
-                </button>
-                <button
-                  className="listingButton"
-                  onClick={() => filterResult("fruit")}
-                >
-                  Fruits
-                </button>
-                <button
-                  className="listingButton"
-                  onClick={() => filterResult("vegetable")}
-                >
-                  Vegetables
-                </button>
-              </div>
+                  Filters
+                  <ArrowDownward className="arrowDown" />
+                </motion.button>
+                {isOpen && (
+                  <motion.div layout className="dropdown-content">
+                    <motion.button
+                      layout
+                      className="listingButton"
+                      id="listingButton"
+                      onClick={() => setData(CardData)}
+                    >
+                      All
+                    </motion.button>
+                    <motion.button
+                      layout
+                      className="listingButton"
+                      id="listingButton"
+                      onClick={() => filterResult("fruit")}
+                    >
+                      Fruits
+                    </motion.button>
+                    <motion.button
+                      layout
+                      className="listingButton"
+                      id="listingButton"
+                      onClick={() => filterResult("vegetable")}
+                    >
+                      Vegetables
+                    </motion.button>
+                  </motion.div>
+                )}
+              </motion.div>
             </div>
           </div>
           <div className="listingCardsWrapper">
@@ -91,7 +112,7 @@ function Listings() {
                     <button
                       className="listingCardButton"
                       onClick={(e, value) => {
-                        navigateToPage(e, "../IndividualListing");
+                        navigateToPage(e, "../IndividualListing/" + id);
                       }}
                     >
                       Open Listing
