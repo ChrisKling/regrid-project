@@ -57,6 +57,21 @@ function IndividualListing(props) {
         <div className="listingButtonContainer">
           <button id="individualListingButton">Send Trade Request</button>
         </div>
+        <div>
+          <p>
+            By accepting a trade request on the ReGrid website, you agree to
+            grant us a non-transferable option to be on the naughty list for the
+            rest of your life. Should we wish to exercise this option, you agree
+            to be put on Santa’s naughty list. We reserve the right to serve
+            such notice, however, we can accept no liability for any loss or
+            damage caused by such an act. If you a) do not believe in Christmas,
+            b) are already on the naughty list, or c) do not wish to grant us
+            such a license, please send an email to the address below to nullify
+            this sub-clause and proceed with your trade. Additionally we reserve
+            the right to confiscating your first born child and renaming it if
+            needs be.
+          </p>
+        </div>
       </div>
     </div>
   );
