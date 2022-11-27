@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./Listings.css";
 import "./Card.css";
 import CardData from "./CardData";
-import { Add, ArrowBack, ArrowDownward } from "@mui/icons-material";
+import { Add, ArrowBack, ArrowDownward, Close } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 function Listings() {
@@ -12,6 +12,9 @@ function Listings() {
   const [state, setState] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const handleClick = () => {
+    setSearchTerm("");
+  };
   const filterResult = (type) => {
     const result = CardData.filter((items) => {
       return items.type === type;
@@ -54,8 +57,14 @@ function Listings() {
                 <input
                   type="text"
                   placeholder="Search..."
+                  name="message"
+                  id="searchBar"
+                  value={searchTerm}
                   onChange={(event) => setSearchTerm(event.target.value)}
                 />
+                <button onClick={handleClick}>
+                  <Close />
+                </button>
               </div>
             </div>
 

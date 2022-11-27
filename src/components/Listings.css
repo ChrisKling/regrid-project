@@ -124,9 +124,26 @@
   padding: 0;
   z-index: 1;
 }
+#searchBar {
+  width: 80%;
+}
 .searchInputContainer {
   width: 350px;
   margin: auto;
+  display: flex;
+}
+.searchInputContainer button {
+  background: white;
+  color: gray;
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  cursor: pointer;
+  padding: 0;
+}
+.searchInputContainer button:hover {
+  background: tomato;
+  border-radius: 50%;
 }
 
 /*Scrollbar modifier*/
