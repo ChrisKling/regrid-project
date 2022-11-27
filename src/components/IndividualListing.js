@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ArrowBack } from "@mui/icons-material";
 
-function IndividualListing() {
+function IndividualListing(props) {
   const navigator = useNavigate();
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
@@ -35,6 +35,7 @@ function IndividualListing() {
       >
         <ArrowBack />
       </button>
+
       <div className="listingImgContainer">
         <img src={product.img} alt="" />
       </div>
@@ -50,6 +51,7 @@ function IndividualListing() {
           <p>Listing Date: {product.startDate}</p>
         </div>
         <div className="listingDescriptionContainer">
+          <h2>Here's what the Seller had to say:</h2>
           <p>{product.description}</p>
         </div>
         <div className="listingButtonContainer">

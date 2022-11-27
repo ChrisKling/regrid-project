@@ -1,7 +1,5 @@
 .listingsContainer {
   position: fixed;
-  align-items: center;
-  justify-content: center;
   z-index: 8;
   top: 50%;
   left: 50%;
@@ -18,7 +16,12 @@
 }
 .listingCardsWrapper {
   padding-top: 50px;
+  display: flex;
+  width: 72%;
+  margin: auto;
+  padding-right: 0;
 }
+
 .listingsHeader h1 {
   font-size: 40px;
   color: tomato;
@@ -35,7 +38,7 @@
   height: 40px;
   cursor: pointer;
   color: tomato;
-  width: 175px;
+  width: 170px;
   margin: 0;
   padding: 0;
   border-radius: 0%;
@@ -56,7 +59,7 @@
 #openSearchButton {
   border: none;
   position: relative;
-  width: 175px;
+  width: 170px;
   background: tomato;
   border-radius: 0;
   color: white;
@@ -92,12 +95,11 @@
   background: rgb(209, 110, 92);
   cursor: pointer;
 }
-.grid {
-  padding: 0 28px 0 40px;
-}
 
 .searchContainer {
-  position: absolute;
+  position: fixed;
+  left: 0;
+  top: 160px;
 }
 
 .filter-container button {
@@ -117,10 +119,14 @@
 .dropdown-content {
   position: absolute;
   background-color: #f9f9f9;
-  width: 175px;
+  width: 170px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 0;
   z-index: 1;
+}
+.searchInputContainer {
+  width: 350px;
+  margin: auto;
 }
 
 /*Scrollbar modifier*/

@@ -5,11 +5,12 @@ import "./Card.css";
 import CardData from "./CardData";
 import { Add, ArrowBack, ArrowDownward } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 
 function Listings() {
   const [data, setData] = useState(CardData);
   const [isOpen, setIsOpen] = useState(false);
+  const [state, setState] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const filterResult = (type) => {
     const result = CardData.filter((items) => {
@@ -22,9 +23,8 @@ function Listings() {
     navigator(value);
   }
 
-  const [Filtered, setFiltered] = useState([]);
-
   const navigator = useNavigate();
+
   return (
     <div>
       <div className="listingsContainer">
@@ -46,10 +46,22 @@ function Listings() {
         </button>
         <div>
           <div className="listingsHeader">
-            <h1>LISTINGS</h1>
+            <div className="listingsh1">
+              <h1>LISTINGS</h1>
+            </div>
+            <div className="sortButtons">
+              <div className="searchInputContainer">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  onChange={(event) => setSearchTerm(event.target.value)}
+                />
+              </div>
+            </div>
+
             <div className="searchContainer">
-              <motion.div className="filter-container" layout>
-                <motion.button
+              <div className="filter-container" layout>
+                <button
                   layout
                   className="openSearchButton"
                   id="openSearchButton"
@@ -57,69 +69,77 @@ function Listings() {
                 >
                   Filters
                   <ArrowDownward className="arrowDown" />
-                </motion.button>
+                </button>
                 {isOpen && (
-                  <motion.div layout className="dropdown-content">
-                    <motion.button
+                  <div layout className="dropdown-content">
+                    <button
                       layout
                       className="listingButton"
                       id="listingButton"
                       onClick={() => setData(CardData)}
                     >
                       All
-                    </motion.button>
-                    <motion.button
+                    </button>
+                    <button
                       layout
                       className="listingButton"
                       id="listingButton"
                       onClick={() => filterResult("fruit")}
                     >
                       Fruits
-                    </motion.button>
-                    <motion.button
+                    </button>
+                    <button
                       layout
                       className="listingButton"
                       id="listingButton"
                       onClick={() => filterResult("vegetable")}
                     >
                       Vegetables
-                    </motion.button>
-                  </motion.div>
+                    </button>
+                  </div>
                 )}
-              </motion.div>
+              </div>
             </div>
           </div>
           <div className="listingCardsWrapper">
             <div className="grid">
-              {data.map((values) => {
-                const { id, title, img, type, location, expiry, description } =
-                  values;
-                return (
-                  <div className="listingCardContainer" key={id}>
-                    <div className="imageContainer">
-                      <img src={img} alt={type} />
-                    </div>
-                    <div className="cardContent">
-                      <div className="cardTitle">
-                        <h3 className="titleh3">{title}</h3>
+              {data
+                .filter((val) => {
+                  if (searchTerm === "") {
+                    return val;
+                  } else if (
+                    val.title.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return val;
+                  }
+                })
+                .map((val) => {
+                  return (
+                    <div className="listingCardContainer" key={val.id}>
+                      <div className="imageContainer">
+                        <img src={val.img} alt={val.type} />
                       </div>
-                      <div className="cardBody">
-                        <p className="bodyp">{description}</p>
+                      <div className="cardContent">
+                        <div className="cardTitle">
+                          <h3 className="titleh3">{val.title}</h3>
+                        </div>
+                        <div className="cardBody">
+                          <p className="bodyp">{val.description}</p>
+                        </div>
                       </div>
+                      <p>{val.location}</p>
+                      <p>{val.expiry}</p>
+                      <button
+                        className="listingCardButton"
+                        onClick={(e, value) => {
+                          navigateToPage(e, "../IndividualListing/" + val.id);
+                        }}
+                      >
+                        Open Listing
+                      </button>
                     </div>
-                    <p>{location}</p>
-                    <p>{expiry}</p>
-                    <button
-                      className="listingCardButton"
-                      onClick={(e, value) => {
-                        navigateToPage(e, "../IndividualListing/" + id);
-                      }}
-                    >
-                      Open Listing
-                    </button>
-                  </div>
-                );
-              })}
+                  );
+                })}
             </div>
           </div>
         </div>
