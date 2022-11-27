@@ -126,24 +126,34 @@
 }
 #searchBar {
   width: 80%;
+  border-radius: 0;
+  height: 45px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 .searchInputContainer {
   width: 350px;
   margin: auto;
   display: flex;
 }
+
 .searchInputContainer button {
   background: white;
   color: gray;
   width: 40px;
-  height: 40px;
-  margin: auto;
+  height: 45px;
+  margin: 8px 0;
   cursor: pointer;
+  background: rgba(255, 99, 71, 0.153);
   padding: 0;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 .searchInputContainer button:hover {
   background: tomato;
-  border-radius: 50%;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  transition: 0.5s;
 }
 
 /*Scrollbar modifier*/
