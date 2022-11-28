@@ -13,10 +13,12 @@ function Frontpagecard() {
       <div className="boxBorder"></div>
       <div className="loginBox">
         <h2>Welcome to the Grid</h2>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa
-          incidunt quos molestiae quisquam molestias? Architecto.
-        </p>
+        <div className="loginText">
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa
+            incidunt quos molestiae quisquam molestias? Architecto.
+          </p>
+        </div>
         <div className="buttonContainer">
           <button
             className="loginButton"

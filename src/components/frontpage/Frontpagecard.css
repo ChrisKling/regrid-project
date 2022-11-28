@@ -46,6 +46,13 @@
   border-radius: 16px;
   border: 4px solid tomato;
 }
+.loginText {
+  width: 80%;
+  margin: 1em auto;
+  letter-spacing: 3px;
+  padding-bottom: 15px;
+  justify-content: space-between;
+}
 /*
 .boxBorder {
   width: 380px;

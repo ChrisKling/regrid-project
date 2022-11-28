@@ -129,5 +129,18 @@ const CardData = [
     expiryFactor: "months",
     type: "other",
   },
+  {
+    id: 11,
+    sellerId: "W001",
+    startDate: "22-11-2022 10:11",
+    img: "https://images.pexels.com/photos/2286776/pexels-photo-2286776.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    title: "POTATO",
+    description: `POTATO`,
+    location: "POTATOland",
+    expiry: "Potato",
+    expiryCount: 4,
+    expiryFactor: "days",
+    type: "vegetable",
+  },
 ];
 export default CardData;

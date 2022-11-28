@@ -3,12 +3,18 @@ import React, { useState } from "react";
 import "./Listings.css";
 import "./Card.css";
 import CardData from "./CardData";
-import { ArrowBack } from "@mui/icons-material";
+import { Add, ArrowBack, ArrowDownward, Close } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 function Listings() {
   const [data, setData] = useState(CardData);
+  const [isOpen, setIsOpen] = useState(false);
+  const [state, setState] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
+  const handleClick = () => {
+    setSearchTerm("");
+  };
   const filterResult = (type) => {
     const result = CardData.filter((items) => {
       return items.type === type;
@@ -20,9 +26,8 @@ function Listings() {
     navigator(value);
   }
 
-  const [Filtered, setFiltered] = useState([]);
-
   const navigator = useNavigate();
+
   return (
     <div>
       <div className="listingsContainer">
@@ -30,63 +35,120 @@ function Listings() {
           className="navigateBackButton"
           onClick={(e, value) => {
             navigateToPage(e, "/");
-          }}>
+          }}
+        >
           <ArrowBack />
         </button>
         <button
           className="newListingButton"
-          onClick={(e, value) => {
-            navigateToPage(e, "../newListing");
-          }}>
-          <ArrowBack />
+          onClick={() => {
+            navigator("../NewListing");
+          }}
+        >
+          <Add />
         </button>
         <div>
           <div className="listingsHeader">
-            <h1>Listings</h1>
+            <div className="listingsh1">
+              <h1>LISTINGS</h1>
+            </div>
+            <div className="sortButtons">
+              <div className="searchInputContainer">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  name="message"
+                  id="searchBar"
+                  value={searchTerm}
+                  onChange={(event) => setSearchTerm(event.target.value)}
+                />
+                <button onClick={handleClick}>
+                  <Close />
+                </button>
+              </div>
+            </div>
+
             <div className="searchContainer">
-              <div className="filter-container">
+              <div className="filter-container" layout>
                 <button
-                  className="listingButton"
-                  onClick={() => setData(CardData)}>
-                  All
+                  layout
+                  className="openSearchButton"
+                  id="openSearchButton"
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  Filters
+                  <ArrowDownward className="arrowDown" />
                 </button>
-                <button
-                  className="listingButton"
-                  onClick={() => filterResult("fruit")}>
-                  Fruits
-                </button>
-                <button
-                  className="listingButton"
-                  onClick={() => filterResult("vegetable")}>
-                  Vegetables
-                </button>
+                {isOpen && (
+                  <div layout className="dropdown-content">
+                    <button
+                      layout
+                      className="listingButton"
+                      id="listingButton"
+                      onClick={() => setData(CardData)}
+                    >
+                      All
+                    </button>
+                    <button
+                      layout
+                      className="listingButton"
+                      id="listingButton"
+                      onClick={() => filterResult("fruit")}
+                    >
+                      Fruits
+                    </button>
+                    <button
+                      layout
+                      className="listingButton"
+                      id="listingButton"
+                      onClick={() => filterResult("vegetable")}
+                    >
+                      Vegetables
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
           <div className="listingCardsWrapper">
             <div className="grid">
-              {data.map((values) => {
-                const { id, title, img, type, location, expiry, description } =
-                  values;
-                return (
-                  <div className="listingCardContainer" key={id}>
-                    <div className="imageContainer">
-                      <img src={img} alt={type} />
-                    </div>
-                    <div className="cardContent">
-                      <div className="cardTitle">
-                        <h3 className="titleh3">{title}</h3>
+              {data
+                .filter((val) => {
+                  if (searchTerm === "") {
+                    return val;
+                  } else if (
+                    val.title.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return val;
+                  }
+                })
+                .map((val) => {
+                  return (
+                    <div className="listingCardContainer" key={val.id}>
+                      <div className="imageContainer">
+                        <img src={val.img} alt={val.type} />
                       </div>
-                      <div className="cardBody">
-                        <p className="bodyp">{description}</p>
+                      <div className="cardContent">
+                        <div className="cardTitle">
+                          <h3 className="titleh3">{val.title}</h3>
+                        </div>
+                        <div className="cardBody">
+                          <p className="bodyp">{val.description}</p>
+                        </div>
                       </div>
+                      <p>{val.location}</p>
+                      <p>{val.expiry}</p>
+                      <button
+                        className="listingCardButton"
+                        onClick={(e, value) => {
+                          navigateToPage(e, "../IndividualListing/" + val.id);
+                        }}
+                      >
+                        Open Listing
+                      </button>
                     </div>
-                    <p>{location}</p>
-                    <p>{expiry}</p>
-                    <button className="listingCardButton">Open Listing</button>
-                  </div>
-                );
-              })}
+                  );
+                })}
             </div>
           </div>
         </div>

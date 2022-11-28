@@ -1,18 +1,3 @@
-.newListingContainer {
-  position: fixed;
-  align-items: center;
-  justify-content: center;
-  z-index: 8;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60vw;
-  height: 90vh;
-  padding: 40px;
-  background: #fff;
-  text-align: center;
-  border-radius: 16px;
-  border: 4px solid tomato;
-  display: grid;
-  overflow-y: scroll;
+.newlisting {
+  overflow: hidden;
 }

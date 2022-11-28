@@ -1,0 +1,80 @@
+#individualListingContainer {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.listingImgContainer img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.listingImgContainer {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  width: 50%;
+  height: 100%;
+}
+
+.listingProductContainer {
+  width: 50%;
+  height: 100%;
+  padding: 0;
+}
+.listingProductContainer h1 {
+  font-size: 40px;
+  color: tomato;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: auto;
+}
+
+.h1Container {
+  background: rgba(255, 99, 71, 0.099);
+  display: flex;
+  height: 25%;
+}
+.listingInfoContainer {
+  text-align: left;
+  justify-content: center;
+  padding-left: 70px;
+  padding-top: 40px;
+  height: 25%;
+}
+
+.listingInfoContainer p {
+  font-size: 16px;
+}
+.listingInfoContainer h2 {
+  color: tomato;
+}
+.listingDescriptionContainer {
+  height: 25%;
+}
+.listingDescriptionContainer p {
+  height: 25%;
+
+  font-size: 16px;
+  text-align: left;
+  justify-content: center;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+#individualListingButton {
+  color: tomato;
+  background: rgba(255, 99, 71, 0.099);
+  justify-content: center;
+  cursor: pointer;
+  width: 100%;
+  height: 60px;
+  font-size: 24px;
+  border-radius: 0px;
+}
+#individualListingButton:hover {
+  background: tomato;
+  color: white;
+}
