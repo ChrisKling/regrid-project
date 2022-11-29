@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./NewListing.css";
 import "../Listings.css";
+import "../IndividualListing.css";
 import { useNavigate } from "react-router-dom";
 import { ArrowBack, CameraAlt, PersonOutline } from "@mui/icons-material";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
@@ -38,7 +39,7 @@ function NewListing() {
 
   const navigator = useNavigate();
   return (
-    <div className="listingsContainer newlisting">
+    <div className="listingsContainer" id="individualListingContainer">
       <button
         className="navigateBackButton"
         onClick={() => {
@@ -47,44 +48,79 @@ function NewListing() {
       >
         <ArrowBack />
       </button>
-      <div className="listingImgContainer">
-        <div className="newlistingUploadImageText">
-          <h2>Upload an image</h2>
-          <p>
-            You might get more traction by uploading an image of your product
-          </p>
-        </div>
-        <form onSubmit={uploadFile}>
-          <label for="inputTag" className="inputWrapper">
-            <CameraAlt />
-            <h3>Select Image</h3>
-            <input type="file" id="inputTag" className="inputFile" />
-          </label>
 
-          <button className="loginButton" variant="outlined" type="submit">
-            Upload
-          </button>
-          <div className="imgContainer">
-            {!imgUrl && (
-              <div className="loadingWrapperNewListing">
-                <img
-                  src="https://images.pexels.com/photos/1002638/pexels-photo-1002638.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  alt=""
-                />
+      <form onSubmit={uploadFile} id="newListingForm">
+        <div className="listingImgContainer">
+          {!imgUrl && (
+            <>
+              <img
+                className="newListingImg"
+                src="https://images.pexels.com/photos/1002638/pexels-photo-1002638.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt=""
+              />
+              <div className="newlistingUploadImageText">
+                <div className="textBoxField1">
+                  <h3>Choose an Image for your listing</h3>
+                  <p>
+                    You might get more traction by uploading an image of your
+                    product
+                  </p>
+                </div>
+
+                <label for="inputTag" className="inputWrapper">
+                  <CameraAlt />
+                  <h3>Select Image</h3>
+                  <input type="file" id="inputTag" className="inputFile" />
+                </label>
+
+                <button
+                  className="loginButton"
+                  variant="outlined"
+                  type="submit"
+                >
+                  Upload
+                </button>
               </div>
-            )}
+            </>
+          )}
 
-            {imgUrl && (
-              <img src={imgUrl} alt="myFile" className="profileImageUpload" />
-            )}
-          </div>
-        </form>
-        <div className="listingProductContainer">
-          <form>
-            <input type="text" />
-          </form>
+          {imgUrl && (
+            <img
+              src={imgUrl}
+              alt="myFile"
+              className="profileImageUpload newListingImg"
+            />
+          )}
         </div>
-      </div>
+        <div className="listingProductContainer" id="listingProductContainer">
+          <input type="text" placeholder="Listing Title" id="inputTitle" />
+          <label id="newListingLabel">Location:</label>
+          <input type="text" placeholder="Location" id="inputLocation" />
+          <label for="productType" id="newListingLabel">
+            Product Type:
+          </label>
+          <select id="productType" name="productType">
+            <label>Product Type</label>
+
+            <option value="other">other</option>
+            <option value="vegetable">Vegetable</option>
+            <option value="fruit">Fruit</option>
+          </select>
+          <label id="newListingLabel">Expiry date:</label>
+          <input type="date" />
+          <div className="textareaContainer">
+            <label id="newListingLabel">Product description:</label>
+            <textarea placeholder="What do you have to say about the product?"></textarea>
+          </div>
+          <div className="submitFormButtonContainer">
+            <input
+              type="submit"
+              value="Create Listing!"
+              id="submitFormButton"
+            />
+          </div>
+        </div>
+      </form>
     </div>
   );
 }

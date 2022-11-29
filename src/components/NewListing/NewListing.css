@@ -1,5 +1,8 @@
 .newlisting {
   overflow: hidden;
+  display: flex;
+  padding: 0;
+  margin: 0;
 }
 .loadingWrapperNewListing {
   display: flex;
@@ -10,4 +13,106 @@
   justify-content: center;
   margin: auto;
   font-size: 80px;
+}
+.listingProductContainer {
+  float: right;
+  padding: 150px;
+}
+.listingImgContainer {
+  float: left;
+}
+.newlistingUploadImageText {
+  position: fixed;
+  bottom: 10%;
+  left: 25%;
+  width: 250px;
+  height: 300px;
+  background: white;
+  transform: translate(-50%);
+  padding: 15px;
+  border-radius: 15px;
+}
+.newListingImg {
+  display: flex;
+  object-fit: fill;
+}
+.imgContainer {
+  display: flex;
+}
+#newListingForm {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+.textBoxField1 {
+  padding-top: 15px;
+  padding-bottom: 25px;
+}
+.textBoxField1 h3 {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background: rgba(255, 99, 71, 0.243);
+}
+.textBoxField1 p {
+  padding-top: 15px;
+}
+#inputTitle::placeholder {
+  font-size: 30px;
+  text-align: center;
+
+  color: rgba(255, 99, 71, 0.382);
+  font-weight: 600;
+}
+#inputTitle {
+  width: 200px;
+  margin: auto;
+  padding-top: 15px;
+  background: white;
+  border: 1px solid tomato;
+}
+#listingProductContainer {
+  padding: 50px;
+}
+#inputLocation {
+}
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+  background-color: rgba(255, 99, 71, 0.171);
+}
+#newListingLabel {
+  text-align: left;
+  padding-top: 20px;
+}
+.textareaContainer {
+  padding-top: 25px;
+}
+.submitFormButtonContainer {
+  width: 100%;
+  padding-top: 50px;
+}
+#submitFormButton {
+  color: grey;
+  font-weight: 600;
+  transition: 0.5s;
+  padding: 15px;
+  font-size: 20px;
+}
+#submitFormButton:hover {
+  background: tomato;
+  color: white;
+  cursor: pointer;
 }
