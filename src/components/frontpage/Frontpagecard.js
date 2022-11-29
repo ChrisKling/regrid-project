@@ -15,8 +15,10 @@ function Frontpagecard() {
         <h2>Welcome to the Grid</h2>
         <div className="loginText">
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa
-            incidunt quos molestiae quisquam molestias? Architecto.
+            Have you ever had a dream that, that, um, that you had, uh, that you
+            had to, you could, you do, you wit, you wa, you could do so, you do
+            you could, you want, you wanted him to do you so much you could do
+            anything?
           </p>
         </div>
         <div className="buttonContainer">

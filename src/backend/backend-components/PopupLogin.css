@@ -28,6 +28,7 @@ input {
   background: rgb(228, 58, 24);
   color: white;
   cursor: pointer;
+  animation: wiggle 0.5s ease-in-out;
 }
 .navigateBackButton {
   width: 50px;

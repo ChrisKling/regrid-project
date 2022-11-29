@@ -138,7 +138,6 @@
 }
 
 .searchInputContainer button {
-  background: white;
   color: gray;
   width: 40px;
   height: 45px;
@@ -149,11 +148,19 @@
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 }
+@keyframes wiggle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .searchInputContainer button:hover {
   background: tomato;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+
   transition: 0.5s;
+  animation: wiggle 1s ease-in-out;
 }
 
 /*Scrollbar modifier*/
