@@ -17,6 +17,8 @@ import PopupSignup from "./backend/backend-components/PopupSignup";
 import NewListing from "./components/NewListing/NewListing";
 import IndividualListing from "./components/IndividualListing";
 
+import Home from "./components/chat/Home";
+
 function App() {
   return (
     <Box>
@@ -34,6 +36,7 @@ function App() {
                 path="/IndividualListing/:id"
                 element={<IndividualListing />}
               />
+              <Route path="Home" element={<Home />} />
             </Routes>
           </ProfileProvider>
         </AuthProvider>
