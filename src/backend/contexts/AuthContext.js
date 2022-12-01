@@ -25,6 +25,7 @@ export function AuthProvider({ children }) {
   }
 
   async function logout() {
+    setCurrentUser({});
     return await signOut(auth);
   }
 

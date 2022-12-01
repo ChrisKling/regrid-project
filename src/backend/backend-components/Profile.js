@@ -22,8 +22,18 @@ export default function Profile() {
   const [progressPercent, setProgressPercent] = useState(0);
 
   const [error, setError] = useState("");
-  const { currentUser, logout } = useAuth();
+  const { currentUser } = useAuth();
   const [profileValid, setProfileIsValid] = useState(false);
+
+  const [blankProfile, setBlankProfile] = useState({
+    firstName: "",
+    lastName: "",
+    location: "",
+    email: "",
+    userId: "",
+    profileImg: null,
+  });
+
   const [profile, setProfile] = useState({
     firstName: "",
     lastName: "",
@@ -39,21 +49,31 @@ export default function Profile() {
     updateProfile,
     userProfile,
     checkIfProfileExists,
+    profileLogout,
   } = useProfile();
   const navigator = useNavigate();
   const [loading, setLoading] = useState(false);
+
+  // useEffect(() => {
+  //   if (!currentUser) {
+  //     navigator("/login");
+  //   }
+  //   setProfile({ ...profile, userId: currentUser.uid });
+
+  //   console.log("UseFX #1");
+  //   console.log(currentUser);
+  // }, []);
 
   useEffect(() => {
     if (!currentUser) {
       navigator("/login");
     }
-
-    if (!checkIfProfileExists(currentUser.uid)) {
+    setProfile({ ...profile, userId: currentUser.uid });
+    if (checkIfProfileExists(currentUser.uid)) {
       setProfileIsValid(true);
       //setProfile(userProfile);
-    } else {
-      setProfile({ ...profile, userId: currentUser.uid });
     }
+    console.log("UseFX #2");
   }, []);
 
   useEffect(() => {
@@ -63,31 +83,43 @@ export default function Profile() {
   }, [profileValid]);
 
   useEffect(() => {
-    if (profile.profileImg) {
+    if (profile.profileImg !== null) {
       updateProfile(profile, profile.userId);
       console.log("PROFILE img FX FIRED");
+      setProfileIsValid(false);
       setImgUrl(profile.profileImg);
-      getUserProfile(currentUser.uid);
+      //getUserProfile(currentUser.uid);
     }
   }, [profile.profileImg]);
 
   useEffect(() => {
     if (imgUrl) {
-      getUserProfile(currentUser.uid);
+      setProfileIsValid(true);
+      //getUserProfile(currentUser.uid);
       console.log("final FX executed");
     }
   }, [imgUrl]);
 
   // useEffect(() => {
-  //   if (userProfile) {
+  //   if (
+  //     userProfile.firstName &&
+  //     userProfile.profileImg &&
+  //     profile.firstName === ""
+  //   ) {
   //     setProfile(userProfile);
-  //     //setImgUrl(userProfile.profileImg)
+  //     console.log("UserProfile FX Fired");
+  //   }
+  // }, [userProfile]);
+
+  // useEffect(() => {
+  //   if (userProfile.profileImg !== null) {
+  //     setProfile(userProfile);
   //   }
   // }, [userProfile]);
 
   async function handleSubmit(e) {
     e.preventDefault();
-
+    console.log("form submitted");
     try {
       setError("");
       setLoading(true);
@@ -97,8 +129,14 @@ export default function Profile() {
       // }
       // else
       //{
+      setProfileIsValid(false);
       await addProfile(profile, currentUser.uid);
+      setLoading(false);
       setProfileIsValid(true);
+
+      console.log("new PROFILE CREATED");
+      navigator("/profile");
+      console.log("Should have navigated elsewhere?");
       //}
 
       //TODO: getting and setting an image/file reference requires us to get it's download link
@@ -117,7 +155,8 @@ export default function Profile() {
   async function handleLogout() {
     setError("");
     try {
-      await logout();
+      setProfile(blankProfile);
+      await profileLogout();
       console.log("should have logged out!");
       navigator("/login");
     } catch (error) {
@@ -149,6 +188,9 @@ export default function Profile() {
         });
       }
     );
+    console.log("uploaded photo........................");
+    //console.log(profile.profileImg);
+    //await updateProfile(profile, currentUser.uid);
     //await getUserProfile(profile, currentUser.uid);
   };
 

@@ -29,6 +29,7 @@ export default function Signup() {
         setError("");
         setLoading(true);
         await signup(emailRef.current.value, passwordRef.current.value);
+        setLoading(false);
         navigator("/profile");
       } catch (err) {
         setError("Account creation failed!");

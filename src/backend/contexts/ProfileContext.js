@@ -10,7 +10,12 @@ import {
   where,
   getDocs,
   serverTimestamp,
+  updateDoc,
+  getDocsFromServer,
+  getDocFromServer,
 } from "../firebase/firebase";
+
+import { useAuth } from "./AuthContext";
 
 const ProfileContext = createContext();
 
@@ -20,12 +25,13 @@ export function useProfile() {
 
 export function ProfileProvider({ children }) {
   const [userProfile, setUserProfile] = useState();
+  const { logout } = useAuth();
 
   const checkIfProfileExists = async (userId) => {
     const collectionRef = collection(db, "profiles");
     const q = query(collectionRef, where("userId", "==", userId));
 
-    const resultingSnapshot = await getDocs(q);
+    const resultingSnapshot = await getDocsFromServer(q);
     resultingSnapshot.forEach((doc) => {
       console.log("checking if user exists...");
       console.log();
@@ -33,11 +39,12 @@ export function ProfileProvider({ children }) {
       if (data.userId === userId) {
         console.log("Profile already exists!");
         console.log(data);
+        //getUserProfile(userId);
         return true;
       }
-      console.log("Profile doesn't exist");
-      return false;
     });
+    console.log("Profile doesn't exist");
+    return false;
   };
 
   //POST(ADD)
@@ -47,12 +54,24 @@ export function ProfileProvider({ children }) {
       throw new Error("User credentials are missing");
     }
     if (profile.userId !== userId) {
+      console.log("profile.userId is:");
+      console.log(profile.userId);
+      console.log("userId is:");
+      console.log(userId);
       throw new Error("User ID does not match");
     }
 
     //if user is valid, add it as a profile
-    await addDoc(collection(db, "profiles"), {
+    // await addDoc(collection(db, "profiles"), {
+    //   ...profile,
+    //   createdAt: serverTimestamp(),
+    //   updatedAt: serverTimestamp(),
+    // });
+
+    const docRef = doc(db, "profiles", profile.userId);
+    await setDoc(docRef, {
       ...profile,
+      // userId: profile.userId,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
     });
@@ -66,7 +85,7 @@ export function ProfileProvider({ children }) {
 
     const collectionRef = collection(db, "profiles");
     const q = query(collectionRef, where("userId", "==", id));
-    const resultingSnapshot = await getDocs(q);
+    const resultingSnapshot = await getDocsFromServer(q);
     resultingSnapshot.forEach((doc) => {
       const data = doc.data();
       setUserProfile({ ...data, userId: doc.userId });
@@ -84,8 +103,40 @@ export function ProfileProvider({ children }) {
     }
     if (profile.userId !== userId) {
       console.log("ERROR 2 Thrown!");
+      console.log(profile.userId);
+      console.log(userId);
       throw new Error("User ID does not match");
     }
+
+    console.log("Reached here, the query");
+
+    // const collectionRef = await collection(db, "profiles");
+    // const q = await query(collectionRef, where("userId", "==", userId));
+    // const docRef = await getDoc(q);
+
+    //const docRef = doc(db, "profiles", profile.userId);
+    // console.log("docRef is:");
+    // console.log(docRef);
+    // await setDoc(docRef, {
+    //   ...profile,
+    //   updatedAt: serverTimestamp(),
+    // });
+
+    //const docRef = doc(db, "profiles", profile.userId);
+    //console.log("ref is:");
+
+    //db.collection("profiles").doc(doc.userId);
+    //await updateDoc(docRef, { profileImg: profile.profileImg });
+
+    // const collectionRef = collection(db, "profiles");
+    // const q = query(collectionRef, where("userId", "==", userId));
+    // const resultingSnapshot = await getDocFromServer(q);
+    // resultingSnapshot.forEach(async (doc) => {
+    //   const data = doc.data();
+    //   console.log("in Loop documents!");
+    //   console.log(data);
+    //   await updateDoc(doc, { profileImg: profile.profileImg });
+    // });
 
     const docRef = doc(db, "profiles", profile.userId);
     await setDoc(docRef, {
@@ -93,11 +144,17 @@ export function ProfileProvider({ children }) {
       updatedAt: serverTimestamp(),
     });
 
+    console.log("document Semi loaded??");
     await getUserProfile(profile.userId);
 
     console.log("document updated?");
 
     console.log(userProfile);
+  };
+
+  const profileLogout = async () => {
+    setUserProfile({});
+    await logout();
   };
 
   const exports = {
@@ -106,6 +163,7 @@ export function ProfileProvider({ children }) {
     updateProfile,
     userProfile,
     checkIfProfileExists,
+    profileLogout,
   };
 
   return (
