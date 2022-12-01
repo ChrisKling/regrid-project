@@ -54,16 +54,6 @@ export default function Profile() {
   const navigator = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   if (!currentUser) {
-  //     navigator("/login");
-  //   }
-  //   setProfile({ ...profile, userId: currentUser.uid });
-
-  //   console.log("UseFX #1");
-  //   console.log(currentUser);
-  // }, []);
-
   useEffect(() => {
     if (!currentUser) {
       navigator("/login");
@@ -71,7 +61,6 @@ export default function Profile() {
     setProfile({ ...profile, userId: currentUser.uid });
     if (checkIfProfileExists(currentUser.uid)) {
       setProfileIsValid(true);
-      //setProfile(userProfile);
     }
     console.log("UseFX #2");
   }, []);
@@ -88,34 +77,15 @@ export default function Profile() {
       console.log("PROFILE img FX FIRED");
       setProfileIsValid(false);
       setImgUrl(profile.profileImg);
-      //getUserProfile(currentUser.uid);
     }
   }, [profile.profileImg]);
 
   useEffect(() => {
     if (imgUrl) {
       setProfileIsValid(true);
-      //getUserProfile(currentUser.uid);
       console.log("final FX executed");
     }
   }, [imgUrl]);
-
-  // useEffect(() => {
-  //   if (
-  //     userProfile.firstName &&
-  //     userProfile.profileImg &&
-  //     profile.firstName === ""
-  //   ) {
-  //     setProfile(userProfile);
-  //     console.log("UserProfile FX Fired");
-  //   }
-  // }, [userProfile]);
-
-  // useEffect(() => {
-  //   if (userProfile.profileImg !== null) {
-  //     setProfile(userProfile);
-  //   }
-  // }, [userProfile]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -123,12 +93,6 @@ export default function Profile() {
     try {
       setError("");
       setLoading(true);
-      // if(profileValid)
-      // {
-      //   await updateProfile(profile, currentUser.uid);
-      // }
-      // else
-      //{
       setProfileIsValid(false);
       await addProfile(profile, currentUser.uid);
       setLoading(false);
@@ -137,7 +101,6 @@ export default function Profile() {
       console.log("new PROFILE CREATED");
       navigator("/profile");
       console.log("Should have navigated elsewhere?");
-      //}
 
       //TODO: getting and setting an image/file reference requires us to get it's download link
       //const myRef = ref(storage, "files/ReGrid_00.png");
@@ -150,7 +113,6 @@ export default function Profile() {
 
     setLoading(false);
   }
-  //
 
   async function handleLogout() {
     setError("");
@@ -189,10 +151,11 @@ export default function Profile() {
       }
     );
     console.log("uploaded photo........................");
-    //console.log(profile.profileImg);
-    //await updateProfile(profile, currentUser.uid);
-    //await getUserProfile(profile, currentUser.uid);
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (userProfile) {
     return (
@@ -208,13 +171,6 @@ export default function Profile() {
             <div>
               <h4>Email:</h4> <p>{userProfile.email}</p>
             </div>
-            {/* <div>
-              <img
-                src={userProfile.profileImg}
-                alt="myIMG"
-                style={{ maxWidth: "128px", maxHeight: "128px" }}
-              />
-            </div> */}
           </section>
 
           <section>
