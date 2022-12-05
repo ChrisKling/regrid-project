@@ -1,16 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { Box, Button, ButtonGroup, Grid, Typography } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
-import { ArrowBack } from "@mui/icons-material";
 import styled from "styled-components";
+import { ArrowBack } from "@mui/icons-material";
 
-export default function Signup() {
+export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
-  const { signup, currentUser } = useAuth();
+  const { login, currentUser } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigator = useNavigate();
@@ -24,61 +23,47 @@ export default function Signup() {
   async function handleSubmit(e) {
     console.log("form submitted");
     e.preventDefault();
-    if (passwordRef.current.value === passwordConfirmRef.current.value) {
-      try {
-        setError("");
-        setLoading(true);
-        await signup(emailRef.current.value, passwordRef.current.value);
-        setLoading(false);
-        navigator("/profile");
-      } catch (err) {
-        setError("Account creation failed!");
-        console.log(err);
-      }
-    } else {
-      setError("Passwords do not match!");
+    try {
+      setError("");
+      setLoading(true);
+      await login(emailRef.current.value, passwordRef.current.value);
+      navigator("/profile");
+    } catch (err) {
+      setError("Account creation failed!");
+      console.log(err);
     }
     setLoading(false);
   }
   return (
-    <>
-      <Box flex={5} sx={{ background: "#d4df9e" }}>
-        <Box padding="30px 0 0 0 ">
-          <StyledButton variant="contained" href="/">
-            <ArrowBack /> <Typography sx={{ color: "white" }}> Back</Typography>{" "}
-          </StyledButton>
-        </Box>
+    <Box flex={5} sx={{ background: "#d4df9e" }}>
+      <Box padding="30px 0 0 0 ">
+        <StyledButton variant="contained" href="/">
+          <ArrowBack /> <Typography sx={{ color: "white" }}> Back</Typography>
+        </StyledButton>
 
-        <StyledH2>Sign Up</StyledH2>
+        <StyledH2>Login</StyledH2>
 
         <StyledForm onSubmit={handleSubmit}>
           <label>Email address</label>
           <input type="text" ref={emailRef} required />
           <label>Password</label>
           <input type="password" ref={passwordRef} />
-          <label>Confirm Password</label>
-          <input type="password" ref={passwordConfirmRef} />
           <ButtonGroup aria-label="outlined primary button group">
-            <Button
-              variant="contained"
-              className="sign-up-button"
-              disabled={loading}
-              type="submit"
-            >
-              Signup!
+            <Button disabled={loading} type="submit" variant="contained">
+              Login
             </Button>
           </ButtonGroup>
+          {error && (
+            <Typography pt={2} color="red">
+              ERROR: {error}
+            </Typography>
+          )}
         </StyledForm>
-        {error && (
-          <Typography pt={2} color="red">
-            ERROR: {error}
-          </Typography>
-        )}
         <div>
-          Already a member? <Link to="/login"> Log In </Link>
+          Don't have an account? <Link to="/signup"> Sign Up </Link>
         </div>
       </Box>
-    </>
+    </Box>
   );
 }
 

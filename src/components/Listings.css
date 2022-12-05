@@ -1,14 +1,12 @@
 .listingsContainer {
   position: fixed;
-  align-items: center;
-  justify-content: center;
   z-index: 8;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 60vw;
   height: 90vh;
-  padding: 40px;
+  padding: 0px;
   background: #fff;
   text-align: center;
   border-radius: 16px;
@@ -17,22 +15,68 @@
   overflow-y: scroll;
 }
 .listingCardsWrapper {
-  padding-top: 150px;
+  padding-top: 50px;
+  display: flex;
+  width: 72%;
+  margin: auto;
+  padding-right: 0;
 }
-.listingButton:focus {
+
+.listingsHeader h1 {
+  font-size: 40px;
+  color: tomato;
+  padding-top: 50px;
+}
+.filter-container {
+  padding-bottom: 3rem;
+  position: absolute;
+  left: 0px;
+  top: 60px;
+}
+#listingButton {
+  border: none;
+  height: 40px;
+  cursor: pointer;
+  color: tomato;
+  width: 170px;
+  margin: 0;
+  padding: 0;
+  border-radius: 0%;
+  font-weight: 600;
+}
+#listingButton:focus {
   background-color: tomato;
   color: white;
 }
-.listingButton:hover {
+#listingButton:hover {
   background-color: rgba(255, 99, 71, 0.35);
   color: white;
 }
-.listingButton:active {
+#listingButton:active {
   background-color: rgba(255, 99, 71, 0.746);
   color: white;
 }
+#openSearchButton {
+  border: none;
+  position: relative;
+  width: 170px;
+  background: tomato;
+  border-radius: 0;
+  color: white;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#openSearchButton:hover {
+  background: rgba(255, 99, 71, 0.641);
+}
+.arrowDown {
+  display: flex;
+  margin-left: auto;
+}
 .newListingButton {
-  width: 150px;
+  width: 50px;
   height: 50px;
   border-radius: 50%;
   color: white;
@@ -46,42 +90,70 @@
   justify-content: center;
 }
 .newListingButton:hover {
-  width: 160px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background: rgb(209, 110, 92);
   cursor: pointer;
 }
 
-.listingsHeader {
-  padding-bottom: 3rem;
-  position: absolute;
-  left: 50%;
-  top: 50px;
-  transform: translate(-50%);
-  border-bottom: 2px solid rgba(255, 99, 71, 0.505);
-}
 .searchContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 10px;
-  font-weight: 800;
+  position: fixed;
+  left: 0;
+  top: 160px;
 }
 
 .filter-container button {
-  margin-right: 2rem;
   min-width: 5rem;
   padding: 0.5rem 1rem;
   border: none;
   background: white;
   color: tomato;
-  border-radius: 1rem;
-  border: 2px solid tomato;
+
   cursor: pointer;
 }
-button.active {
+
+.filter-container {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 170px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 0;
+  z-index: 1;
+}
+#searchBar {
+  width: 80%;
+  border-radius: 0;
+  height: 45px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.searchInputContainer {
+  width: 350px;
+  margin: auto;
+  display: flex;
+}
+
+.searchInputContainer button {
+  background: white;
+  color: gray;
+  width: 40px;
+  height: 45px;
+  margin: 8px 0;
+  cursor: pointer;
+  background: rgba(255, 99, 71, 0.153);
+  padding: 0;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.searchInputContainer button:hover {
   background: tomato;
-  color: white;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  transition: 0.5s;
 }
 
 /*Scrollbar modifier*/
