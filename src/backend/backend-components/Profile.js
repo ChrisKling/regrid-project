@@ -224,9 +224,7 @@ export default function Profile() {
             </button>
             <button
               className="browseButton"
-              onClick={(e, value) => {
-                navigateToPage(e, "Listings");
-              }}
+              onClick="location.href='./Listings';"
             >
               Browse <ArrowForward />
             </button>
