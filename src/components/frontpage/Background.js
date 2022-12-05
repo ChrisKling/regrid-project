@@ -3,6 +3,7 @@ import "./Background.css";
 function Background() {
   return (
     <div className="background">
+      <div className="sun"></div>
       <div className="cloud one"></div>
       <div className="cloud two"></div>
       <div className="cloud three"></div>

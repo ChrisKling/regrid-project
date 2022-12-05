@@ -40,7 +40,7 @@ function Frontpagecard() {
               navigateToPage(e, "login");
             }}
           >
-            Sign in
+            Login
           </button>
         </div>
       </div>
