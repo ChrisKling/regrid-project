@@ -13,6 +13,7 @@ import {
   updateDoc,
   getDocsFromServer,
   getDocFromServer,
+  ref,
 } from "../firebase/firebase";
 
 import { useAuth } from "./AuthContext";
@@ -44,6 +45,20 @@ export function ProfileProvider({ children }) {
     });
     console.log("Profile doesn't exist");
     return false;
+  };
+
+  const addListing = async (listing) => {
+    console.log("still trying.........................");
+
+    //const docRef = doc(db, "listings");
+    //const docRef = db.collection("listings");
+    await addDoc(collection(db, "listings"), {
+      ...listing,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
+    });
+
+    console.log("listing was added?!?!?!");
   };
 
   //POST(ADD)
@@ -121,6 +136,7 @@ export function ProfileProvider({ children }) {
     userProfile,
     checkIfProfileExists,
     profileLogout,
+    addListing,
   };
 
   return (

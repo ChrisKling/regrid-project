@@ -2,14 +2,26 @@ import React, { useState } from "react";
 import "./NewListing.css";
 import "../Listings.css";
 import "../IndividualListing.css";
+import { useProfile } from "../../backend/contexts/ProfileContext";
 import { useNavigate } from "react-router-dom";
 import { ArrowBack, CameraAlt, PersonOutline } from "@mui/icons-material";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../backend/firebase/firebase";
 
 function NewListing() {
+  const { userProfile, addListing } = useProfile();
+  const [error, setError] = useState();
   const [progressPercent, setProgressPercent] = useState(0);
   const [imgUrl, setImgUrl] = useState(null);
+  const [listing, setListing] = useState({
+    listingTitle: "",
+    location: "",
+    productType: "",
+    expiryDate: "",
+    productDescription: "",
+    postUserId: "",
+    productImage: null,
+  });
 
   const uploadFile = (e) => {
     e.preventDefault();
@@ -38,6 +50,22 @@ function NewListing() {
   };
 
   const navigator = useNavigate();
+
+  async function submitListing(e) {
+    e.preventDefault();
+    console.log("trying to submit.....");
+    setError("");
+    /*
+    if (!listing.productType) {
+      return setError("No product type was selected");
+    } else if (!listing.listingTitle) {
+      return setError("product title is missing");
+    } else if (!listing.location) {
+      return setError("Pickup location is missing");
+    }
+    */
+    await addListing(listing);
+  }
   return (
     <div className="listingsContainer" id="individualListingContainer">
       <button
@@ -49,7 +77,7 @@ function NewListing() {
         <ArrowBack />
       </button>
 
-      <form onSubmit={uploadFile} id="newListingForm">
+      <form onSubmit={submitListing} id="newListingForm">
         <div className="listingImgContainer">
           {!imgUrl && (
             <>
@@ -93,13 +121,33 @@ function NewListing() {
           )}
         </div>
         <div className="listingProductContainer" id="listingProductContainer">
-          <input type="text" placeholder="Listing Title" id="inputTitle" />
+          <input
+            type="text"
+            placeholder="Listing Title"
+            id="inputTitle"
+            onChange={(e) => {
+              setListing({ ...listing, listingTitle: e.target.value });
+              console.log(listing.listingTitle);
+            }}
+          />
           <label id="newListingLabel">Location:</label>
-          <input type="text" placeholder="Location" id="inputLocation" />
+          <input
+            type="text"
+            placeholder="Location"
+            id="inputLocation"
+            productDescription
+          />
           <label for="productType" id="newListingLabel">
             Product Type:
           </label>
-          <select id="productType" name="productType">
+          <select
+            id="productType"
+            name="productType"
+            onChange={(e) => {
+              setListing({ ...listing, productType: e.target.value });
+              console.log(listing.productType);
+            }}
+          >
             <label>Product Type</label>
 
             <option value="other">other</option>
@@ -107,10 +155,22 @@ function NewListing() {
             <option value="fruit">Fruit</option>
           </select>
           <label id="newListingLabel">Expiry date:</label>
-          <input type="date" />
+          <input
+            type="date"
+            onChange={(e) => {
+              setListing({ ...listing, expiryDate: e.target.value });
+              console.log(listing.expiryDate);
+            }}
+          />
           <div className="textareaContainer">
             <label id="newListingLabel">Product description:</label>
-            <textarea placeholder="What do you have to say about the product?"></textarea>
+            <textarea
+              placeholder="What do you have to say about the product?"
+              onChange={(e) => {
+                setListing({ ...listing, productDescription: e.target.value });
+                console.log(listing.productDescription);
+              }}
+            ></textarea>
           </div>
           <div className="submitFormButtonContainer">
             <input
