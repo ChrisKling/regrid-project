@@ -3,31 +3,23 @@ import { useProfile } from "../backend/contexts/ProfileContext.js";
 import React, { useState } from "react";
 import "./Nav.css";
 import { NotificationsActive } from "@mui/icons-material";
+import { useEffect } from "react";
 
 function Nav() {
-  const [profile, setProfile] = useState({
-    firstName: "",
-    lastName: "",
-    location: "",
-    email: "",
-    userId: "",
-    profileImg: null,
-  });
-  const [blankProfile, setBlankProfile] = useState({
-    firstName: "",
-    lastName: "",
-    location: "",
-    email: "",
-    userId: "",
-    profileImg: null,
-  });
+  const [profile, setProfile] = useState(null);
+  const [blankProfile, setBlankProfile] = useState(null);
 
   const { profileLogout } = useProfile();
 
   const [error, setError] = useState("");
+  const [fullName, setFullName] = useState(null);
   const { userProfile } = useProfile();
 
-  const fullName = `${userProfile.firstName} ${userProfile.lastName}`;
+  useEffect(() => {
+    if (userProfile) {
+      setFullName(`${userProfile.firstName} ${userProfile.lastName}`);
+    }
+  }, [userProfile]);
 
   async function handleLogout() {
     setError("");
@@ -40,7 +32,7 @@ function Nav() {
       setError("logout Failed!");
     }
   }
-
+  console.log(userProfile, "hi");
   return (
     <>
       <div className="navBox">

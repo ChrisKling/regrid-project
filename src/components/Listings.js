@@ -32,6 +32,7 @@ function Listings() {
   return (
     <div>
       <Nav />
+
       <div className="listingsContainer">
         <button
           className="navigateBackButton"

@@ -125,7 +125,7 @@ export function ProfileProvider({ children }) {
   };
 
   const profileLogout = async () => {
-    setUserProfile({});
+    setUserProfile(null);
     await logout();
   };
 
