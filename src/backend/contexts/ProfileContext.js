@@ -54,8 +54,8 @@ export function ProfileProvider({ children }) {
     //const docRef = db.collection("listings");
     await addDoc(collection(db, "listings"), {
       ...listing,
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
+      //createdAt: serverTimestamp(),
+      //updatedAt: serverTimestamp(),
     });
 
     console.log("listing was added?!?!?!");
