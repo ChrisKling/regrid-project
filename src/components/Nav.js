@@ -4,11 +4,12 @@ import React, { useState } from "react";
 import "./Nav.css";
 import { NotificationsActive } from "@mui/icons-material";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Nav() {
   const [profile, setProfile] = useState(null);
   const [blankProfile, setBlankProfile] = useState(null);
-
+  const navigator = useNavigate();
   const { profileLogout } = useProfile();
 
   const [error, setError] = useState("");
@@ -27,12 +28,14 @@ function Nav() {
       setProfile(blankProfile);
       await profileLogout();
       console.log("should have logged out!");
-      navigator("/login");
     } catch (error) {
       setError("logout Failed!");
     }
   }
-  console.log(userProfile, "hi");
+  function navigateToPage(e, value) {
+    navigator(value);
+  }
+
   return (
     <>
       <div className="navBox">
@@ -51,7 +54,26 @@ function Nav() {
             </div>
           </div>
         )}
-        {!userProfile && <button>Login</button>}
+        {!userProfile && (
+          <div className="navButtons">
+            <button
+              className="loginButton"
+              onClick={(e, value) => {
+                navigateToPage(e, "../signup");
+              }}
+            >
+              Sign Up
+            </button>
+            <button
+              className="loginButton"
+              onClick={(e, value) => {
+                navigateToPage(e, "../login");
+              }}
+            >
+              Login
+            </button>
+          </div>
+        )}
       </div>
     </>
   );
