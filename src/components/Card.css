@@ -31,7 +31,7 @@
   overflow: hidden;
   height: 170px;
   width: 360px;
-  object-fit: none;
+  object-fit: cover;
 }
 .cardContent {
   margin: 1rem;

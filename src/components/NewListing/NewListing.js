@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./NewListing.css";
 import "../Listings.css";
 import "../IndividualListing.css";
@@ -8,21 +8,28 @@ import { ArrowBack, CameraAlt, PersonOutline } from "@mui/icons-material";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../backend/firebase/firebase";
 import Nav from "../Nav";
+import { useListings } from "../listingData";
 
 function NewListing() {
   const { userProfile, addListing } = useProfile();
   const [error, setError] = useState();
   const [progressPercent, setProgressPercent] = useState(0);
   const [imgUrl, setImgUrl] = useState(null);
+  const { getAllListings, setListings, listings } = useListings();
   const [listing, setListing] = useState({
+    id: 0,
     listingTitle: "",
     location: "",
-    productType: "",
+    productType: "other",
     expiryDate: "",
     productDescription: "",
     postUserId: "",
     img: null,
   });
+
+  useEffect(() => {
+    setListing({ ...listings, id: listings.length + 1 });
+  }, [listings]);
 
   const uploadFile = (e) => {
     e.preventDefault();
@@ -73,6 +80,9 @@ function NewListing() {
     }
     */
     await addListing(listing);
+    setListings([]);
+    await getAllListings();
+    navigator("/Listings");
   }
   return (
     <div>
@@ -151,7 +161,10 @@ function NewListing() {
               type="text"
               placeholder="Location"
               id="inputLocation"
-              productDescription
+              onChange={(e) => {
+                setListing({ ...listing, location: e.target.value });
+                console.log(listing.location);
+              }}
             />
             <label for="productType" id="newListingLabel">
               Product Type:
