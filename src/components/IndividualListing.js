@@ -65,6 +65,7 @@ function IndividualListing(props) {
                 <p>Product ID: {product.id}</p>
                 <p>Expiry Date: {product.expiryDate}</p>
                 <p>Listing Date: {product.createdAt}</p>
+                <p>Location:{product.location}</p>
               </div>
               <div className="listingDescriptionContainer">
                 <h2>Here's what the Seller had to say:</h2>
