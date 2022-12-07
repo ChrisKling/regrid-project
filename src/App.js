@@ -19,30 +19,33 @@ import NewListing from "./components/NewListing/NewListing";
 import IndividualListing from "./components/IndividualListing";
 
 import Home from "./components/chat/Home";
+import { ListingsProvider } from "./components/listingData";
 
 function App() {
   return (
     <Box>
       <BrowserRouter>
-        <AuthProvider>
-          <ProfileProvider>
-            <Routes>
-              <Route exact path="/" element={<Frontpage />} />
-              <Route path="signup" element={<PopupSignup />} />
-              <Route exact path="/" element={<PrivateRoute />}>
-                <Route exact path="profile" element={<Profile />} />
-              </Route>
-              <Route path="login" element={<Login />} />
-              <Route path="Listings" element={<Listings />} />
-              <Route path="NewListing" element={<NewListing />} />
-              <Route
-                path="/IndividualListing/:id"
-                element={<IndividualListing />}
-              />
-              <Route path="Home" element={<Home />} />
-            </Routes>
-          </ProfileProvider>
-        </AuthProvider>
+        <ListingsProvider>
+          <AuthProvider>
+            <ProfileProvider>
+              <Routes>
+                <Route exact path="/" element={<Frontpage />} />
+                <Route path="signup" element={<PopupSignup />} />
+                <Route exact path="/" element={<PrivateRoute />}>
+                  <Route exact path="profile" element={<Profile />} />
+                </Route>
+                <Route path="login" element={<Login />} />
+                <Route path="Listings" element={<Listings />} />
+                <Route path="NewListing" element={<NewListing />} />
+                <Route
+                  path="/IndividualListing/:id"
+                  element={<IndividualListing />}
+                />
+                <Route path="Home" element={<Home />} />
+              </Routes>
+            </ProfileProvider>
+          </AuthProvider>
+        </ListingsProvider>
       </BrowserRouter>
       <Background />
     </Box>

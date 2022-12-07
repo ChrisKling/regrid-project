@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 //import Card from "./Card";*
 import "./Listings.css";
 import "./Card.css";
@@ -6,19 +6,33 @@ import CardData from "./CardData";
 import { Add, ArrowBack, ArrowDownward, Close } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import Nav from "./Nav";
+import { useListings } from "./listingData";
 
 function Listings() {
-  const [data, setData] = useState(CardData);
+  const [data, setData] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [state, setState] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-
+  const { listings, getAllListings } = useListings();
   const handleClick = () => {
     setSearchTerm("");
   };
+
+  useEffect(() => {
+    console.log("trying to load listings...");
+    //getAllListings();
+    console.log(listings);
+  }, []);
+
+  useEffect(() => {
+    console.log("trying to re-load listings...");
+    setData(listings);
+    console.log(listings);
+  }, [listings]);
+
   const filterResult = (type) => {
-    const result = CardData.filter((items) => {
-      return items.type === type;
+    const result = listings.filter((items) => {
+      return items.data.productType === type;
     });
     setData(result);
   };
@@ -88,7 +102,7 @@ function Listings() {
                       layout
                       className="listingButton"
                       id="listingButton"
-                      onClick={() => setData(CardData)}
+                      onClick={() => setData(listings)}
                     >
                       All
                     </button>
@@ -114,45 +128,47 @@ function Listings() {
             </div>
           </div>
           <div className="listingCardsWrapper">
-            <div className="grid">
-              {data
-                .filter((val) => {
-                  if (searchTerm === "") {
-                    return val;
-                  } else if (
-                    val.title.toLowerCase().includes(searchTerm.toLowerCase())
-                  ) {
-                    return val;
-                  }
-                })
-                .map((val) => {
-                  return (
-                    <div className="listingCardContainer" key={val.id}>
-                      <div className="imageContainer">
-                        <img src={val.img} alt={val.type} />
-                      </div>
-                      <div className="cardContent">
-                        <div className="cardTitle">
-                          <h3 className="titleh3">{val.title}</h3>
+            {data && (
+              <div className="grid">
+                {data
+                  // .filter((val) => {
+                  //   if (searchTerm === "") {
+                  //     return val;
+                  //   } else if (
+                  //     val.title.toLowerCase().includes(searchTerm.toLowerCase())
+                  //   ) {
+                  //     return val;
+                  //   }
+                  // })
+                  .map((val) => {
+                    return (
+                      <div className="listingCardContainer" key={val.id}>
+                        <div className="imageContainer">
+                          <img src={val.img} alt={val.productType} />
                         </div>
-                        <div className="cardBody">
-                          <p className="bodyp">{val.description}</p>
+                        <div className="cardContent">
+                          <div className="cardTitle">
+                            <h3 className="titleh3">{val.listingTitle}</h3>
+                          </div>
+                          <div className="cardBody">
+                            <p className="bodyp">{val.productDescription}</p>
+                          </div>
                         </div>
+                        <p>{val.location}</p>
+                        <p>{val.expiryDate}</p>
+                        <button
+                          className="listingCardButton"
+                          onClick={(e, value) => {
+                            navigateToPage(e, "../IndividualListing/" + val.id);
+                          }}
+                        >
+                          Open Listing
+                        </button>
                       </div>
-                      <p>{val.location}</p>
-                      <p>{val.expiry}</p>
-                      <button
-                        className="listingCardButton"
-                        onClick={(e, value) => {
-                          navigateToPage(e, "../IndividualListing/" + val.id);
-                        }}
-                      >
-                        Open Listing
-                      </button>
-                    </div>
-                  );
-                })}
-            </div>
+                    );
+                  })}
+              </div>
+            )}
           </div>
         </div>
       </div>

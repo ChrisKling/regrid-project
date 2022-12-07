@@ -151,7 +151,11 @@ function NewListing() {
               type="text"
               placeholder="Location"
               id="inputLocation"
-              productDescription
+              // productDescription
+              onChange={(e) => {
+                setListing({ ...listing, location: e.target.value });
+                console.log(listing.location);
+              }}
             />
             <label for="productType" id="newListingLabel">
               Product Type:
