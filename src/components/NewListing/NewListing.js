@@ -21,13 +21,17 @@ function NewListing() {
     expiryDate: "",
     productDescription: "",
     postUserId: "",
-    productImage: null,
+    img: null,
   });
 
   const uploadFile = (e) => {
     e.preventDefault();
-    const file = e.target[0]?.files[0];
-    if (!file) return;
+    //const file = e.target[0]?.files[0];
+    //if (!file) return;
+    if (!e.target.files || e.target.files.length === 0) {
+      return null;
+    }
+    const file = e.target.files[0];
 
     const storageDestinationRef = ref(storage, `files/${file.name}`);
     const uploadTask = uploadBytesResumable(storageDestinationRef, file);
@@ -44,6 +48,8 @@ function NewListing() {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((donwloadURL) => {
+          console.log("tried to upload the image!");
+          setListing({ ...listing, img: donwloadURL });
           setImgUrl(donwloadURL);
         });
       }
@@ -54,6 +60,7 @@ function NewListing() {
 
   async function submitListing(e) {
     e.preventDefault();
+    //uploadFile(e);
     console.log("trying to submit.....");
     setError("");
     /*
@@ -101,16 +108,22 @@ function NewListing() {
                   <label for="inputTag" className="inputWrapper">
                     <CameraAlt />
                     <h3>Select Image</h3>
-                    <input type="file" id="inputTag" className="inputFile" />
+                    <input
+                      type="file"
+                      id="inputTag"
+                      className="inputFile"
+                      onChange={uploadFile}
+                    />
                   </label>
 
-                  <button
-                    className="loginButton"
-                    variant="outlined"
-                    type="submit"
-                  >
-                    Upload
-                  </button>
+                  {/* <button
+                  
+                  className="loginButton"
+                  variant="outlined"
+                  type="submit"
+                >
+                  Upload
+                </button> */}
                 </div>
               </>
             )}
