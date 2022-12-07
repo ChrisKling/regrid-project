@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./NewListing.css";
 import "../Listings.css";
 import "../IndividualListing.css";
@@ -15,8 +15,9 @@ function NewListing() {
   const [error, setError] = useState();
   const [progressPercent, setProgressPercent] = useState(0);
   const [imgUrl, setImgUrl] = useState(null);
-  const { getAllListings, setListings } = useListings();
+  const { getAllListings, setListings, listings } = useListings();
   const [listing, setListing] = useState({
+    id: 0,
     listingTitle: "",
     location: "",
     productType: "other",
@@ -25,6 +26,10 @@ function NewListing() {
     postUserId: "",
     img: null,
   });
+
+  useEffect(() => {
+    setListing({ ...listings, id: listings.length + 1 });
+  }, [listings]);
 
   const uploadFile = (e) => {
     e.preventDefault();
