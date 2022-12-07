@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import { useProfile } from "../backend/contexts/ProfileContext.js";
 //import Card from "./Card";*
 import "./Listings.css";
 import "./Card.css";
@@ -9,6 +8,7 @@ import { Add, ArrowBack, ArrowDownward, Close } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 import { useListings } from "./listingData";
+import { useProfile } from "../backend/contexts/ProfileContext";
 
 function Listings() {
   const [data, setData] = useState(null);
@@ -25,9 +25,7 @@ function Listings() {
     }
   }, [userProfile]);
 
-
   const { listings, getAllListings } = useListings();
-
   const handleClick = () => {
     setSearchTerm("");
   };
