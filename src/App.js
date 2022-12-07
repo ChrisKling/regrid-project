@@ -25,8 +25,8 @@ function App() {
   return (
     <Box>
       <BrowserRouter>
-        <ListingsProvider>
-          <AuthProvider>
+        <AuthProvider>
+          <ListingsProvider>
             <ProfileProvider>
               <Routes>
                 <Route exact path="/" element={<Frontpage />} />
@@ -44,8 +44,8 @@ function App() {
                 <Route path="Home" element={<Home />} />
               </Routes>
             </ProfileProvider>
-          </AuthProvider>
-        </ListingsProvider>
+          </ListingsProvider>
+        </AuthProvider>
       </BrowserRouter>
       <Background />
     </Box>
