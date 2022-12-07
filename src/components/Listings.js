@@ -5,6 +5,7 @@ import "./Card.css";
 import CardData from "./CardData";
 import { Add, ArrowBack, ArrowDownward, Close } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import Nav from "./Nav";
 
 function Listings() {
   const [data, setData] = useState(CardData);
@@ -30,6 +31,8 @@ function Listings() {
 
   return (
     <div>
+      <Nav />
+
       <div className="listingsContainer">
         <button
           className="navigateBackButton"

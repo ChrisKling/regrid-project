@@ -10,12 +10,9 @@ import {
   query,
   where,
   serverTimestamp,
-
-
   getDocFromServer,
   getDocsFromServer,
   updateDoc,
-
 } from "firebase/firestore";
 import {
   getAuth,
@@ -53,13 +50,11 @@ export {
   query,
   where,
   serverTimestamp,
-
   getDocFromServer,
   getDocsFromServer,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
-
   updateDoc,
 };
