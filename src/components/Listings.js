@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useProfile } from "../backend/contexts/ProfileContext.js";
+
 //import Card from "./Card";*
 import "./Listings.css";
 import "./Card.css";
@@ -12,6 +14,14 @@ function Listings() {
   const [isOpen, setIsOpen] = useState(false);
   const [state, setState] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isHovering, setIsHovering] = useState(false);
+
+  const { userProfile } = useProfile();
+
+  useEffect(() => {
+    if (userProfile) {
+    }
+  }, [userProfile]);
 
   const handleClick = () => {
     setSearchTerm("");
@@ -29,6 +39,14 @@ function Listings() {
 
   const navigator = useNavigate();
 
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
+
   return (
     <div>
       <Nav />
@@ -42,14 +60,33 @@ function Listings() {
         >
           <ArrowBack />
         </button>
-        <button
-          className="newListingButton"
-          onClick={() => {
-            navigator("../NewListing");
-          }}
-        >
-          <Add />
-        </button>
+        {userProfile && (
+          <>
+            <button
+              className="newListingButton"
+              onClick={() => {
+                navigator("../NewListing");
+              }}
+            >
+              <Add />
+            </button>
+          </>
+        )}
+        {!userProfile && (
+          <div className="deactivatedButtonContainer">
+            <button
+              className="deactiveNewListingButton"
+              disabled={true}
+              onMouseOver={handleMouseOver}
+              onMouseOut={handleMouseOut}
+            >
+              <Add />
+            </button>
+            {isHovering && (
+              <p className="buttonHover">Please sign in to create a listing</p>
+            )}
+          </div>
+        )}
         <div>
           <div className="listingsHeader">
             <div className="listingsh1">
