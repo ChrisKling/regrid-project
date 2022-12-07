@@ -28,7 +28,7 @@ function NewListing() {
   });
 
   useEffect(() => {
-    setListing({ ...listings, id: listings.length + 1 });
+    setListing({ ...listing, id: listings.length + 1 });
   }, [listings]);
 
   const uploadFile = (e) => {

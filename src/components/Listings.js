@@ -44,7 +44,7 @@ function Listings() {
 
   const filterResult = (type) => {
     const result = listings.filter((items) => {
-      return items.data.productType === type;
+      return items.productType === type;
     });
     setData(result);
   };
@@ -170,15 +170,17 @@ function Listings() {
             {data && (
               <div className="grid">
                 {data
-                  // .filter((val) => {
-                  //   if (searchTerm === "") {
-                  //     return val;
-                  //   } else if (
-                  //     val.title.toLowerCase().includes(searchTerm.toLowerCase())
-                  //   ) {
-                  //     return val;
-                  //   }
-                  // })
+                  .filter((val) => {
+                    if (searchTerm === "") {
+                      return val;
+                    } else if (
+                      val.listingTitle
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase())
+                    ) {
+                      return val;
+                    }
+                  })
                   .map((val) => {
                     return (
                       <div className="listingCardContainer" key={val.id}>
