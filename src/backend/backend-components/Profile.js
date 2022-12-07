@@ -4,6 +4,7 @@ import { storage } from "../firebase/firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "./Profile.css";
 
 import {
   ArrowForward,
@@ -204,11 +205,13 @@ export default function Profile() {
                   )}
 
                   {userProfile.profileImg && (
-                    <img
-                      src={userProfile.profileImg}
-                      alt="myFile"
-                      className="profileImageUpload"
-                    />
+                    <div className="uploadedProfileImg">
+                      <img
+                        src={userProfile.profileImg}
+                        alt="myFile"
+                        className="profileImageUpload"
+                      />
+                    </div>
                   )}
                 </div>
               </form>
