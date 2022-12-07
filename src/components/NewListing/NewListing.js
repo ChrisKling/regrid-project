@@ -8,16 +8,18 @@ import { ArrowBack, CameraAlt, PersonOutline } from "@mui/icons-material";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../backend/firebase/firebase";
 import Nav from "../Nav";
+import { useListings } from "../listingData";
 
 function NewListing() {
   const { userProfile, addListing } = useProfile();
   const [error, setError] = useState();
   const [progressPercent, setProgressPercent] = useState(0);
   const [imgUrl, setImgUrl] = useState(null);
+  const { getAllListings, setListings } = useListings();
   const [listing, setListing] = useState({
     listingTitle: "",
     location: "",
-    productType: "",
+    productType: "other",
     expiryDate: "",
     productDescription: "",
     postUserId: "",
@@ -73,6 +75,9 @@ function NewListing() {
     }
     */
     await addListing(listing);
+    setListings([]);
+    await getAllListings();
+    navigator("/Listings");
   }
   return (
     <div>
@@ -151,7 +156,6 @@ function NewListing() {
               type="text"
               placeholder="Location"
               id="inputLocation"
-              // productDescription
               onChange={(e) => {
                 setListing({ ...listing, location: e.target.value });
                 console.log(listing.location);

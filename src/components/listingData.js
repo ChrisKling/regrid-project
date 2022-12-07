@@ -26,21 +26,24 @@ export function useListings() {
 
 export function ListingsProvider({ children }) {
   const [listings, setListings] = useState([]);
-  const [fruitListings, setFruitListings] = useState([]);
-  const [veggieListings, setVeggieListings] = useState([]);
-  const [otherListings, setOtherListings] = useState([]);
+  //const [fruitListings, setFruitListings] = useState([]);
+  //const [veggieListings, setVeggieListings] = useState([]);
+  //const [otherListings, setOtherListings] = useState([]);
+  let fruitListings = [];
+  let veggieListings = [];
+  let otherListings = [];
   //const { logout } = useAuth();
   useEffect(() => {
     getAllListings();
   }, []);
 
-  useEffect(() => {
-    if (fruitListings && veggieListings && otherListings) {
-      setListings([...otherListings, ...veggieListings, ...fruitListings]);
-      console.log("ALL LISTINGS HAVE BEEN SET MOTHERFUCKER!!!!!");
-      console.log(listings);
-    }
-  }, [fruitListings, veggieListings, otherListings]);
+  //   useEffect(() => {
+  //     if (fruitListings && veggieListings && otherListings) {
+  //       setListings([...otherListings, ...veggieListings, ...fruitListings]);
+  //       console.log("ALL LISTINGS HAVE BEEN SET MOTHERFUCKER!!!!!");
+  //       console.log(listings);
+  //     }
+  //   }, [fruitListings, veggieListings, otherListings]);
 
   // Check if the user had already created a profile or not
   const getFruitListings = async () => {
@@ -48,52 +51,85 @@ export function ListingsProvider({ children }) {
     const q = query(collectionRef, where("productType", "==", "fruit"));
     const resultingSnapshot = await getDocsFromServer(q);
     resultingSnapshot.forEach((doc) => {
-      console.log("checking if listings exists...");
+      console.log("checking if Fruit exists...");
       console.log();
       const data = doc.data();
       //console.log("Profile already exists!");
       //console.log(data);
-      setFruitListings([...fruitListings, data]);
+      let canAddItem = true;
+
+      fruitListings.map((item) => {
+        if (item.id === data.id) {
+          canAddItem = false;
+        }
+      });
+      if (canAddItem === true) {
+        fruitListings = [...fruitListings, data];
+      }
     });
-    console.log("Profile doesn't exist");
+    console.log(fruitListings);
   };
   const getVegetableListings = async () => {
     const collectionRef = collection(db, "listings");
     const q = query(collectionRef, where("productType", "==", "vegetable"));
     const resultingSnapshot = await getDocsFromServer(q);
     resultingSnapshot.forEach((doc) => {
-      console.log("checking if listings exists...");
+      console.log("checking if veggie exists...");
       console.log();
       const data = doc.data();
       //console.log("Profile already exists!");
       //console.log(data);
-      setVeggieListings([...veggieListings, data]);
+      let canAddItem = true;
+
+      veggieListings.map((item) => {
+        if (item.id === data.id) {
+          canAddItem = false;
+        }
+      });
+      if (canAddItem === true) {
+        veggieListings = [...veggieListings, data];
+      }
+      //veggieListings = [...veggieListings, data];
     });
-    console.log("Profile doesn't exist");
+    console.log(veggieListings);
   };
   const getOtherListings = async () => {
     const collectionRef = collection(db, "listings");
     const q = query(collectionRef, where("productType", "==", "other"));
     const resultingSnapshot = await getDocsFromServer(q);
     resultingSnapshot.forEach((doc) => {
-      console.log("checking if listings exists...");
+      console.log("checking if other listings exists...");
       console.log();
       const data = doc.data();
       //console.log("Profile already exists!");
       //console.log(data);
-      setOtherListings([...otherListings, data]);
+      let canAddItem = true;
+
+      otherListings.map((item) => {
+        if (item.id === data.id) {
+          canAddItem = false;
+        }
+      });
+      if (canAddItem === true) {
+        otherListings = [...otherListings, data];
+      }
+      //otherListings = [...otherListings, data];
     });
-    console.log("Profile doesn't exist");
+    console.log(otherListings);
   };
+
   const getAllListings = async () => {
     await getOtherListings();
     await getVegetableListings();
     await getFruitListings();
-    //setListings([...otherListings, ...veggieListings, ...fruitListings])
+    setListings([...otherListings, ...veggieListings, ...fruitListings]);
+    console.log("PRINTING ALL LISTINGS:::::");
+    console.log(listings);
   };
 
   const exports = {
     getAllListings,
+    setListings,
     listings,
   };
 
