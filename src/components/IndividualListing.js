@@ -64,7 +64,6 @@ function IndividualListing(props) {
                 {/* <p>Seller ID: {product.sellerId}</p> */}
                 <p>Product ID: {product.id}</p>
                 <p>Expiry Date: {product.expiryDate}</p>
-                <p>Listing Date: {product.createdAt}</p>
                 <p>Location:{product.location}</p>
               </div>
               <div className="listingDescriptionContainer">
