@@ -15,8 +15,10 @@ function Frontpagecard() {
         <h2>Welcome to the Grid</h2>
         <div className="loginText">
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa
-            incidunt quos molestiae quisquam molestias? Architecto.
+            Without disconnecting from your local grid, ReGrid allows you to
+            connect with peers who feel that any surplus items you have should
+            be able to be traded without the hassle of having a currency middle
+            man. Like putting a grid on a grid... get it?
           </p>
         </div>
         <div className="buttonContainer">

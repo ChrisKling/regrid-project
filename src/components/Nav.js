@@ -52,6 +52,14 @@ function Nav() {
                 className="profileImageUpload"
               />
             </div>
+            <button
+              className="goToProfile"
+              onClick={(e, value) => {
+                navigateToPage(e, "../profile");
+              }}
+            >
+              My Profile
+            </button>
           </div>
         )}
         {!userProfile && (
